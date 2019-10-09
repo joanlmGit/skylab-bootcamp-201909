@@ -17,14 +17,7 @@ function changeElementsByElement(array,valeuRemplace,indexFrom,indexEnd){
 }
 
 function fill(array,expresion){
-   try{
-      if (!(array instanceof Array)) throw TypeError (array + ' is not array');
-      if (typeof expresion!='function') throw TypeError (expresion + ' is not a function');
-   }catch (e){
-      if (e==' is not array') alert("is not array");
-      if (e==' is not a function') alert("is not a function");  
-   }
-   
+      
    return array=expresion(array,2,2,4);
 }
 

@@ -1,17 +1,12 @@
 
 
 var arrayNumbers=[1, 2, 3,4,5];
-
+/**
+ * 
+ * @param {} num 
+ */
 function addSix(num){
    return num+6;
-}
-
-function addSeven(num){
-   return num+7;
-}
-
-function addSEigth(num){
-   return num+8;
 }
 
 function map(auxArray,expression){
