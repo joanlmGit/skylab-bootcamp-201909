@@ -3,8 +3,8 @@ var arrayElements=["Elena","Pedro","Lopez","Ricardo","2",6,45];
 var isFound=false;
 /**
  * 
- * @param {*} paramArray 
- * @param {*} elementfind 
+ * @param {array} paramArray array que contiene los a buscar
+ * @param {*} elementfind elemento que queremos buscar
  */
 function findElement(paramArray,elementfind){
    debugger
@@ -17,6 +17,10 @@ function findElement(paramArray,elementfind){
    return isFound;
 }
 
+/**
+ * 
+ * @param {funcion} expresion realiza la busqueda del elemento en un array
+ */
 function find(expresion){
    return expresion(arrayElements,6);
 }

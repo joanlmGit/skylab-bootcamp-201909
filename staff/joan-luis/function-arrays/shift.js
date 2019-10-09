@@ -3,7 +3,7 @@
 var arrayNumbers=[1,2,3,4,5,6];
 /**
  * 
- * @param {*} array 
+ * @param {array} array 
  */
 function deleteFirtsElement(array){
    debugger
@@ -21,6 +21,11 @@ function deleteFirtsElement(array){
    return array;
 }
 
+/**
+ * 
+ * @param {array} array 
+ * @param {funcion} expresion 
+ */
 function shift(array,expresion){
    return array=expresion(array);
 }
