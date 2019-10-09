@@ -1,0 +1,67 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background: #649aa9;
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.header p{
+    width: 50%;
+    height: 15%;
+    font-size: 20rem;
+    background-color: blue;
+    text-align: center;
+    padding: 0.5% 0;
+}
+
+header{
+    background-color: #86d390;
+    display: flex;
+    flex-flow: row wrap;
+    flex-basis: auto;
+}
+
+.image{
+    width: 10%;
+    height: 10%;    
+    float: right;
+}
+.cointainerText{
+    width: 60%;
+    height: 60;
+    display: flexbox;
+
+}
+
+.dimensionDiv{
+    width: 40%;
+    height: 20%
+}
+
+.contenedor{
+    display: flex;
+    flex-direction: column;
+    
+}
+aside{
+    display: flexbox;
+    flex-direction: column;
+    justify-content: flex-end;
+    
+}
+nav{
+   background-color: #9c9beb;
+   display: flex;
+    width: 45%;
+    height: 15%;
+}
+section{
+    margin: 5%;
+    padding: 2%
+}
+
+
