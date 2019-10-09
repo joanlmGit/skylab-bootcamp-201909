@@ -1,7 +1,10 @@
 //Eliminar el primer elemento de un array
 
 var arrayNumbers=[1,2,3,4,5,6];
-
+/**
+ * 
+ * @param {*} array 
+ */
 function deleteFirtsElement(array){
    debugger
    if (array.length==0){
