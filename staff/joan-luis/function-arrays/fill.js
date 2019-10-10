@@ -7,13 +7,7 @@ var arrayPrueba=[2,5,4,9,3,];
  * @param {integer} indexEnd indice del ultimo elemento a modificar
  */
 
-function changeElementsByElement(array,valeuRemplace,indexFrom,indexEnd){
-   
-      if (!(array instanceof Array)) throw TypeError (array + ' is not array');
-      if ((typeof valeuRemplace!='string')) throw TypeError (valeuRemplace + ' is not a string')
-   
-      if (e==' is not array') alert("is not array");
-      if ( e==' is not a string')  alert(" is not a string or correct value");      
+function changeElementsByElement(array,valeuRemplace,indexFrom,indexEnd){          
    for (indexFrom;indexFrom<indexEnd;indexFrom++){
       array[indexFrom]=valeuRemplace;
    }
@@ -26,7 +20,8 @@ function changeElementsByElement(array,valeuRemplace,indexFrom,indexEnd){
  * @param {function} expresion funcion changeElementsByELement invocada y realiza el cambio
  */
 function fill(array,expresion){
-      
+   if (!(array instanceof Array)) throw TypeError (array + ' is not array');
+   if ((typeof valeuRemplace!='string')) throw TypeError (valeuRemplace + ' is not a string');
    return array=expresion(array,2,2,4);
 }
 

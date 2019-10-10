@@ -7,7 +7,8 @@ var isFound=false;
  * @param {*} elementfind elemento que queremos buscar
  */
 function findElement(paramArray,elementfind){
-   debugger
+   if (!(array instanceof Array)) throw TypeError (array + ' is not array');
+   if ((typeof elementfind==='undefined' )) throw TypeError (elementfind + ' the element is undefined');
    for(var i=0; i<paramArray.length;i++){
       if (paramArray[i]==elementfind) {
          isFound=true;
@@ -22,6 +23,7 @@ function findElement(paramArray,elementfind){
  * @param {funcion} expresion realiza la busqueda del elemento en un array
  */
 function find(expresion){
+   if (typeof expression !== 'function') throw TypeError(expression + ' is not a function');
    return expresion(arrayElements,6);
 }
 

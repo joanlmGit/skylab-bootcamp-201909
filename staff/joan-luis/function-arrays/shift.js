@@ -6,7 +6,7 @@ var arrayNumbers=[1,2,3,4,5,6];
  * @param {array} array 
  */
 function deleteFirtsElement(array){
-   debugger
+   if (!(array instanceof Array)) throw TypeError (array + ' is not array');
    if (array.length==0){
       alert("empty element");
    }
@@ -27,6 +27,7 @@ function deleteFirtsElement(array){
  * @param {funcion} expresion 
  */
 function shift(array,expresion){
+   if (!(array instanceof Array)) throw TypeError (array + ' is not array');
    return array=expresion(array);
 }
 

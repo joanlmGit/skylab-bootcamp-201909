@@ -8,6 +8,7 @@ var worker=['Antonio', 'Juan', 'Francisco','Javi', 'Alex'];
  * @param {*} array 
  */
 function removeLastElement(array){
+   if (!(array instanceof Array)) throw TypeError (array + ' is not array');
    var newArray=[];
    var newIndex=array.length-1;
    for (var i=0; i<newIndex;i++) {
@@ -26,7 +27,8 @@ function removeLastElement(array){
  * @param {funcion} expresion funcion realiza la accion de eliminar ultimo elemento del array
  */
 function pop(auxArray,expresion){
-   
+   if (!(auxArray instanceof Array)) throw TypeError (auxArray + ' is not array');
+   if (typeof expression !== 'function') throw TypeError(expression + ' is not a function');
    return auxArray=expresion(auxArray);
 }
 
