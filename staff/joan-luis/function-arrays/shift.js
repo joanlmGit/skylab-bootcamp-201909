@@ -28,6 +28,7 @@ function deleteFirtsElement(array){
  */
 function shift(array,expresion){
    if (!(array instanceof Array)) throw TypeError (array + ' is not array');
+   if (typeof expression !== 'function') throw TypeError(expression + ' is not a function');
    return array=expresion(array);
 }
 

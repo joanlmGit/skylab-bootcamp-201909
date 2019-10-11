@@ -7,7 +7,7 @@ function suffle (array){
   
   for (var i=0; i<number.lengh;i++){
     var indice=(Math.random() * (indices - 0) + 1);
-   rdnArray[i]=number[indice];
+    rdnArray[i]=number[indice];
   }
   return rdnArray;
 }

@@ -4,7 +4,7 @@ var arraySort=["Elena","Pedro","Lopez","Ricardo","2",6,45];
  * @param {*} arrayToSort 
  */
 function funcArraySort(arrayToSort){
-   
+   if (!(arraySort instanceof Array)) throw typeof (arraySort + ' is not an array')
    var letterOne, letterTwo;
    
    var auxArray;
@@ -36,6 +36,7 @@ function funcArraySort(arrayToSort){
  */
 
 function sort(expresion){
+   if (typeof expresion!='function') throw typeof (expresion + ' is not a function');
    return expresion(arraySort);
 }
 console.log((sort(funcArraySort)));

@@ -8,6 +8,10 @@ var arrayPrueba=[2,5,4,9,3,];
  */
 
 function changeElementsByElement(array,valeuRemplace,indexFrom,indexEnd){          
+   if (!(array instanceof Array)) throw TypeError (array + ' is not array');
+   if ((typeof valeuRemplace==='undefined')) throw TypeError (valeuRemplace + ' is undefined');
+   if ((typeof indexFrom==='undefined')) throw TypeError (indexFrom + ' is undefined');
+   if ((typeof indexEnd==='undefined')) throw TypeError (indexEnd + ' is undefined');
    for (indexFrom;indexFrom<indexEnd;indexFrom++){
       array[indexFrom]=valeuRemplace;
    }
