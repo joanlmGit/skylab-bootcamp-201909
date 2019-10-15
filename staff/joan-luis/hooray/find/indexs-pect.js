@@ -1,17 +1,23 @@
 describe('Hooray.prototype.find',function(){
   
-   it ('should true is the element is found', function(){
+   it ('should show the element found', function(){
       var myHooray= new Hooray(1,2,5,7, 'antonio');
-      var elementFound= myHooray.find('antonio');
+      function  foundfn(elemento){
+         return elemento==='antonio';
+      }
+      var result= myHooray.find(foundfn);
             
-      expect(elementFound).toBe(true);
+      expect(result).toBe('antonio');
    });
 
-   it ('Should false if not found a element whithin of array',function(){
+   it ('Should undefined if the element not found',function(){
       var myHooray= new Hooray(1,2,5,7, 'antonio');
-      var elementFound= myHooray.find(4);
+      function  foundfn(elemento){
+         return elemento===6;
+      }
+      var result= myHooray.find(foundfn);
             
-      expect(elementFound).toBe(false);
+      expect(result).toBe(undefined);
    });
 
    it ('Should look undefined if we do not a parameter',function(){

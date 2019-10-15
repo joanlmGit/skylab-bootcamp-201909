@@ -1,15 +1,18 @@
-Hooray.prototype.find=function(elementfind){
    
-    
-   if ((typeof elementfind==='undefined' )) throw TypeError (elementfind + ' the element is undefined');
+  
+Hooray.prototype.find=function(expresion){
+      
+   if ((typeof expresioion!=='function' )) throw TypeError (elementfind + ' is not function');
+      
+   var element;
    
-   var isFound=false;
-
    for(var i=0; i<this.length;i++){
-      if (this[i]===elementfind) {
-         isFound=true;
-         break;
+      if (expresion(this[i])) {
+         element=this[i];
       }
    }
-   return isFound;
-}
+   return element;
+} 
+
+
+
