@@ -1,4 +1,4 @@
-describe('Hooray.prototype.find',function(){
+describe('index',function(){
   
    it ('should show the element found', function(){
       var myHooray= new Hooray(1,2,5,7, 'antonio');
@@ -20,9 +20,9 @@ describe('Hooray.prototype.find',function(){
       expect(result).toBe(undefined);
    });
 
-   it ('Should look undefined if we do not a parameter',function(){
-      var myHooray= new Hooray(1,2,5,7, 'antonio');
-      var elementFound= myHooray.find();
+   it ('Should undefined if hooray have any or not definition',function(){
+      var myHooray= new Hooray();
+      var elementFound= myHooray.find(myHooray);
             
       expect(elementFound).toBe(undefined);
 

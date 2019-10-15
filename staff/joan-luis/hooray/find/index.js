@@ -1,9 +1,17 @@
-   
-  
+
+function Hooray() {
+   for (var i = 0; i  < arguments.length; i++)
+       this[i] = arguments[i];
+
+   this.length = arguments.length;
+}
+
+
+
+
+
 Hooray.prototype.find=function(expresion){
-      
-   if ((typeof expresioion!=='function' )) throw TypeError (elementfind + ' is not function');
-      
+     
    var element;
    
    for(var i=0; i<this.length;i++){
