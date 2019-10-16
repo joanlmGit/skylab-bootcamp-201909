@@ -1,0 +1,11 @@
+$color-1: red
+@mixin transform($he, $we)
+  height: $he
+  width: $we
+
+.landing
+   @include transform(30vh, 100vw)
+   &__h1
+      font-family: serif
+      color: $color-1
+      @include transform(10px, 5px)

@@ -1,30 +1,93 @@
-var h1 = document.createElement('h1');
-h1.innerText = 'Hola Mundo';
+var formu = document.getElementsByClassName('formulario')[0]
+var lista=document.getElementsByClassName('ducks')[0];
 
-document.body.append(h1);
 
-var xhr = new XMLHttpRequest;
 
-xhr.open('GET', 'https://duckling-api.herokuapp.com/api/search?q=green');
 
-xhr.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 201) {
-       var ducks = JSON.parse(xhr.responseText);
+formu.addEventListener("submit", function (e){
+   
+   e.preventDefault();
+   lista.innerHTML="";
+  
+   var searchElemet=e.target.fieldSearch.value;
 
-		var ul = document.createElement('ul');
-		document.body.append(ul);
+   var xhr = new XMLHttpRequest;
 
-		ducks.forEach(function(duck) {
-			var li = document.createElement('li');
+   xhr.open('GET', 'https://duckling-api.herokuapp.com/api/search?q=' + searchElemet);
 
-			var img = document.createElement('img');
-			img.src = duck.imageUrl;
+   xhr.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 201) {
+         var ducks = JSON.parse(xhr.responseText);
 
-			li.append(img);
+         var ul = document.createElement('ul');
+         lista.append(ul);
+         //li.classlist.add('results_item')
+         ducks.forEach(function(duck) {
+            var li = document.createElement('li');
+            var titulo=document.createElement('h3');
+            var img = document.createElement('img'); 
+            var precio=document.createElement('p');
+            
+            img.src = duck.imageUrl;
+            titulo=duck.title;
+            precio=duck.price;
+            
+            ul.append(li);
+            li.append(titulo);
+            li.append(img);
+            li.append(precio);
 
-			ul.append(li);
-        });
-    }
-};
+            li.addEventListener('click', function () {
+            
+               searchDuck(duck.id)
+   
+           });
+         });
+      }
+   };
 
-xhr.send();
+   xhr.send();
+});
+
+function searchDuck(duckId) {
+
+   var xhr = new XMLHttpRequest; //objecto que generamos para llamar al ajax
+
+   xhr.open('GET', 'http://duckling-api.herokuapp.com/api/ducks/' + duckId); //hacemos una llamada (con un query= green) endpont: url donde podemos solicitar 
+
+   xhr.onreadystatechange = function () { //lo que llegue, la respuesta, le passamos una funcion que trabaja esa respuesta
+
+       if (this.readyState == 4 && this.status == 201) {
+
+           var duckis = JSON.parse(xhr.responseText); //parse nos pasa a array de objetos la respuesta, para poder tratarla con js
+
+           printDuck(duckis);
+       }
+   };
+
+   xhr.send();
+}
+
+function printDuck(myDuck) {
+   
+   lista.innerText = " ";
+   var ul = document.createElement('ul');
+   lista.append(ul)
+   var li = document.createElement('li');
+   var img = document.createElement('img');
+   var titulo=document.createElement('h3');
+   var precio=document.createElement('p');
+   var descripcion = document.createElement('p');
+
+   img.src = myDuck.imageUrl;
+   titulo = myDuck.title;
+   precio= myDuck.price;
+   descripcion = myDuck.description;
+
+   ul.append(li);
+   li.append(titulo);
+   li.append(precio);
+   li.append(img);
+   li.append(descripcion);
+
+}

@@ -1,0 +1,12 @@
+.landing {
+  height: 30vh;
+  width: 100vw;
+}
+.landing__h1 {
+  font-family: serif;
+  color: red;
+  height: 10px;
+  width: 5px;
+}
+
+/*# sourceMappingURL=style.css.map */
