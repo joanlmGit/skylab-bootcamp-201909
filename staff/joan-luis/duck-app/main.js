@@ -5,7 +5,7 @@ var lista=document.getElementsByClassName('ducks')[0];
 
 
 formu.addEventListener("submit", function (e){
-   
+  
    e.preventDefault();
    lista.innerHTML="";
   
@@ -21,7 +21,7 @@ formu.addEventListener("submit", function (e){
 
          var ul = document.createElement('ul');
          lista.append(ul);
-         //li.classlist.add('results_item')
+        
          ducks.forEach(function(duck) {
             var li = document.createElement('li');
             var titulo=document.createElement('h3');
@@ -91,3 +91,5 @@ function printDuck(myDuck) {
    li.append(descripcion);
 
 }
+
+//function paindElements();
