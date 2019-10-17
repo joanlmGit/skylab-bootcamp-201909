@@ -1,6 +1,6 @@
 var formu = document.getElementsByClassName('formulario')[0]
 var lista=document.getElementsByClassName('ducks')[0];
-
+debugger
 
 
 
@@ -22,27 +22,7 @@ formu.addEventListener("submit", function (e){
          var ul = document.createElement('ul');
          lista.append(ul);
         
-         ducks.forEach(function(duck) {
-            var li = document.createElement('li');
-            var titulo=document.createElement('h3');
-            var img = document.createElement('img'); 
-            var precio=document.createElement('p');
-            
-            img.src = duck.imageUrl;
-            titulo=duck.title;
-            precio=duck.price;
-            
-            ul.append(li);
-            li.append(titulo);
-            li.append(img);
-            li.append(precio);
-
-            li.addEventListener('click', function () {
-            
-               searchDuck(duck.id)
-   
-           });
-         });
+         printDuck(ducks);
       }
    };
 
@@ -73,22 +53,27 @@ function printDuck(myDuck) {
    lista.innerText = " ";
    var ul = document.createElement('ul');
    lista.append(ul)
-   var li = document.createElement('li');
-   var img = document.createElement('img');
-   var titulo=document.createElement('h3');
-   var precio=document.createElement('p');
-   var descripcion = document.createElement('p');
+   ducks.forEach(function(duck) {
+      var li = document.createElement('li');
+      var titulo=document.createElement('h3');
+      var img = document.createElement('img'); 
+      var precio=document.createElement('p');
+      
+      img.src = duck.imageUrl;
+      titulo=duck.title;
+      precio=duck.price;
+      
+      ul.append(li);
+      li.append(titulo);
+      li.append(img);
+      li.append(precio);
 
-   img.src = myDuck.imageUrl;
-   titulo = myDuck.title;
-   precio= myDuck.price;
-   descripcion = myDuck.description;
+      li.addEventListener('click', function () {
+      
+         searchDuck(duck.id)
+     });
 
-   ul.append(li);
-   li.append(titulo);
-   li.append(precio);
-   li.append(img);
-   li.append(descripcion);
 
+   });
 }
 
