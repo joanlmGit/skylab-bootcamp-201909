@@ -49,11 +49,11 @@ formu.addEventListener("submit", function (e){
    xhr.send();
 });
 
-function searchDuck(duckId) {
+function searchDuck(elementSearch,callback) {
 
    var xhr = new XMLHttpRequest; //objecto que generamos para llamar al ajax
 
-   xhr.open('GET', 'http://duckling-api.herokuapp.com/api/ducks/' + duckId); //hacemos una llamada (con un query= green) endpont: url donde podemos solicitar 
+   xhr.open('GET', 'http://duckling-api.herokuapp.com/api/ducks/' + elementSearch); //hacemos una llamada (con un query= green) endpont: url donde podemos solicitar 
 
    xhr.onreadystatechange = function () { //lo que llegue, la respuesta, le passamos una funcion que trabaja esa respuesta
 
@@ -92,4 +92,3 @@ function printDuck(myDuck) {
 
 }
 
-//function paindElements();
