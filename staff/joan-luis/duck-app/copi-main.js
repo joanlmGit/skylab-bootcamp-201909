@@ -20,7 +20,7 @@ formu.addEventListener("submit", function (e){
    var searchElemet=e.target.fieldSearch.value;
 });
 
-function results(){
+function resultSearch(){
    xhr.onreadystatechange = function () { //lo que llegue, la respuesta, le passamos una funcion que trabaja esa respuesta
 
       if (this.readyState == 4 && this.status == 201) {
@@ -61,3 +61,5 @@ function printDuck(myDuck) {
 
    });
 };
+
+function paindUser()

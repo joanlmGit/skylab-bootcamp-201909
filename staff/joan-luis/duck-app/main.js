@@ -1,6 +1,9 @@
 var formu = document.getElementsByClassName('formulario')[0]
 var lista=document.getElementsByClassName('ducks')[0];
-debugger
+var formUser =document.getElementsByClassName('login')[1];
+var ckeckUser=document.getElementsByClassName('user')[0];
+var checkEmail=document.getElementsByClassName('email')[1]
+var checkPass=document.getElementsByClassName('pass')[2]
 
 
 
@@ -76,4 +79,9 @@ function printDuck(myDuck) {
 
    });
 }
+
+function onClickUser ()
+formUser.addEventListener("submit", function (e){
+   e.preventDefault();
+  
 
