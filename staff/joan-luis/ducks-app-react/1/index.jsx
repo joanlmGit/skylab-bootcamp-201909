@@ -11,8 +11,10 @@ class App extends Component {
         this.handleRegister = this.handleRegister.bind(this)
         this.handleBackFromRegister = this.handleBackFromRegister.bind(this)
         this.handleLogin=this.handleLogin.bind(this)
-        this.handleBackFromLogin=this.handleBackFromLogin.bind(this)  
-        this.handleSearch=this.handleSearch.bind(this)
+        this.handleBackFromLogin=this.handleBackFromLogin.bind(this)
+        this.handleGoToSearch = this.handleGoToSearch.bind(this) 
+        this.handleSearch =this.handleSearch.bind(this)
+      
     }
 
     handleGoToRegister() {
@@ -54,20 +56,30 @@ class App extends Component {
         this.setState({ view: 'landing', error: undefined })
     }
 
-    handleSearch (){
-        try{
-            Serach()
+    handleGoToSearch(){
+        this.setState({ view: 'serach', error: undefined })
+    }
+
+    handleSearch(){
+        try {
+            searchDucks(query, callback => {
+                if (error) this.setState({ error: error.message })
+                else this.setState({ view: 'search' })
+            })
+        } catch (error) {
+            this.setState({ error: error.message,data })
         }
     }
 
+
     render() {
-        const { state: { view, error }, handleGoToRegister, handleGoToLogin, handleRegister, handleBackFromRegister, handleLogin,handleBackFromLogin } = this
+        const { state: { view, error }, handleGoToRegister, handleGoToLogin, handleRegister, handleBackFromRegister, handleLogin,handleBackFromLogin, handleGoToSearch, handleSearch } = this
 
         return <>
             {view === 'landing' && <Landing onLogin={handleGoToLogin} onRegister={handleGoToRegister} />}
             {view === 'register' && <Register onRegister={handleRegister} onBack={handleBackFromRegister} error={error} />}
             {view === 'login' && <Login onLogin={handleLogin} onBack={handleBackFromLogin} error={error} />}
-            /**{view ==='search'  && <Search }**/
+            {view === 'search' && <Serach onClick ={this.handleGoToSearch} error={error}/>  }
         </>
             
     }
