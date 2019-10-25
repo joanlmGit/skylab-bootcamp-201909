@@ -1,23 +1,37 @@
 const { Component } = React
+const {query}=location
+
+const {id, token}=sessionStorage
+
 
 class App extends Component {
-    constructor() {
-        super()
 
-        this.state = { view: 'landing', error: undefined }
+    state = { view: id && token ? 'search': 'landing', error: undefined, query }
 
-        this.handleGoToRegister = this.handleGoToRegister.bind(this)
-        this.handleGoToLogin = this.handleGoToLogin.bind(this)
-        this.handleRegister = this.handleRegister.bind(this)
-        this.handleBackFromRegister = this.handleBackFromRegister.bind(this)
-        this.handleLogin=this.handleLogin.bind(this)
-        this.handleBackFromLogin=this.handleBackFromLogin.bind(this)
-        this.handleGoToSearch = this.handleGoToSearch.bind(this) 
-        this.handleSearch =this.handleSearch.bind(this)
-      
+    componentWillMount(){
+        if (id && token)
+            try {
+                retrieveUser(id, token, (error, user)=>{
+
+                    if (error) this.setState({error: error.message})
+                    else{
+                        const {name}=user
+
+                        this.setState({ user:name })
+
+                    }
+                })
+            } catch (error) {
+                this.setState({error:error.message})
+            }
+        
+        const {state: {query}}= this
+
+        query && this.handleSearch(query)
     }
-
-    handleGoToRegister() {
+    
+    
+    handleGoToRegister(){
         this.setState({ view: 'register' })
     }
 
@@ -40,10 +54,28 @@ class App extends Component {
         try {
             authenticateUser(email, password, (error,data) => {
                 if (error) this.setState({ error: error.message })
-                else this.setState({ view: 'landing' })
+                else this.setState({ view: 'search' })
+                    try {
+                        const {id, token}=data;
+
+                        sessionStorage.id=id;
+                        sessionStorage.token=token
+
+                        registerUser(id, token, (error, user)=>{
+                            if (error) this.setState({error:error.message})
+                            else{
+                                const {name}=user
+
+                                this.setState({view: 'search', user:name})
+                            }
+                        })
+
+                    }catch (error){
+                        this.setState({error: error.message})
+                    }
             })
         } catch (error) {
-            this.setState({ error: error.message,data })
+            this.setState({ error: error.message})
         }
     }
 
@@ -52,22 +84,41 @@ class App extends Component {
         this.setState({ view: 'landing', error: undefined })
     }
 
-    handleBackFromLogin() {
+    handleBackToLogin() {
         this.setState({ view: 'landing', error: undefined })
     }
 
-    handleGoToSearch(){
-        this.setState({ view: 'serach', error: undefined })
+    handleBackToSearch(){
+        this.setState({ view: 'serach'})
     }
 
     handleSearch(){
         try {
-            searchDucks(query, callback => {
+            searchDucks(query, (error,ducks) => {
                 if (error) this.setState({ error: error.message })
-                else this.setState({ view: 'search' })
+                else{
+                    
+                    location.query=query
+                    this.setState({error: undefined, ducks})
+                }
             })
         } catch (error) {
-            this.setState({ error: error.message,data })
+            this.setState({ error: error.message})
+        }
+    }
+
+    handleFav(id){
+        //todo toggleFavDucks (user-id, user-token, id)
+    }
+
+    handleDetail (id) {
+        try {
+            retrieveDuck(id, (error, duck) => {
+                if (error) this.setState({ error: error.message })
+                else this.setState({ view: 'detail', duck })
+            })
+        } catch (error) {
+            this.setState({ error: error.message })
         }
     }
 
@@ -79,12 +130,16 @@ class App extends Component {
             {view === 'landing' && <Landing onLogin={handleGoToLogin} onRegister={handleGoToRegister} />}
             {view === 'register' && <Register onRegister={handleRegister} onBack={handleBackFromRegister} error={error} />}
             {view === 'login' && <Login onLogin={handleLogin} onBack={handleBackFromLogin} error={error} />}
-            {view === 'search' && <Serach onClick ={this.handleGoToSearch} error={error}/>  }
+            {view === 'search' && <>
+                <Serach onSubmit ={handleSearch} results={ducks } error={error} onResultsRender={results=> <Results items={results} onItemRender={item => <ResultItem item={item} key={item.id} onClick={handleDetail} onFav={handleFav} />} />} user={user} query={query}/> 
+                {error && <Feedback messege={error} /> }
+            </>}
+            {view === 'detail' && <Detail item={duck} onBack={this.handleBackToSearch} />}
         </>
             
     }
 }
 
-// TODO login and search
+
 
 ReactDOM.render(<App />, document.getElementById('root'))
