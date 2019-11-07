@@ -1,21 +1,16 @@
-module.export function ({ onSubmit, results, error, onResultsRender, user, query }) {
-    return <section className="view search">
-        <h1 className="search__title">Search</h1>
-        <h2 className="search__user">{user}</h2>
-        <form onSubmit={event => {
-            event.preventDefault()
+const Feedback = require('../feedbach')
 
-            const query = event.target.query.value
-
-            onSubmit(query)
-        }}>
-            <span className="search__icon">🐣</span>
-            <input className="search__criteria" type="text" name="query" placeholder="criteria" defaultValue={query} />
-            <button className="search__submit">🔍</button>
+module.exports=function ({ path }) {
+    return `<section class="view search">
+        
+        <form method="post" action="${path}">
+            <h1 class="search__title">Search</h1>
+            <h2 class="search__user">user</h2>         
+            <span class="search__icon">🐣</span>
+            <input class="search__criteria" type="text" name="query" placeholder="criteria" defaultValue={query} />
+            <button class="search__submit">🔍</button>
         </form>
 
-        {error && <Feedback message={error} />}
-
-        {results && onResultsRender(results)}
-    </section>
+        ${Feedback()}
+    </section>`
 }
