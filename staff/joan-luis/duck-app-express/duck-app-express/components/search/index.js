@@ -1,13 +1,13 @@
 const Feedback = require('../feedbach')
 
-module.exports=function ({ path }) {
+module.exports=function ({ path , query, name, logout}) {
     return `<section class="view search">
-        
+    <h1 class="search__title">Search</h1>
+    <h2 class="search__user">${name}</h2><form method "post" action="${logout}"><button class="search_logout">>/button></form>
         <form method="post" action="${path}">
-            <h1 class="search__title">Search</h1>
-            <h2 class="search__user">user</h2>         
+                   
             <span class="search__icon">🐣</span>
-            <input class="search__criteria" type="text" name="query" placeholder="criteria" defaultValue={query} />
+            <input class="search__criteria" type="text" name="q" placeholder="criteria" ${query? `value=${query}` : ''}/>
             <button class="search__submit">🔍</button>
         </form>
 
