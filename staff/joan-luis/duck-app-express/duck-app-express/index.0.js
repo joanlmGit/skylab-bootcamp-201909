@@ -1,8 +1,8 @@
 const express = require('express')
+const querystring = require('querystring')
 const { View, Landing, Register, Login, Search } = require('./components')
 const { registerUser, authenticateUser, retrieveUser, searchDucks } = require('./logic')
 // const logic = require('./logic')
-const { bodyParser, cookieParser } = require('./utils/middlewares')
 
 const { argv: [, , port = 8080] } = process
 
@@ -20,49 +20,69 @@ app.get('/register', (req, res) => {
     res.send(View({ body: Register({ path: '/register' }) }))
 })
 
-app.post('/register', bodyParser, (req, res) => {
-    const { body: { name, surname, email, password } } = req
+function parseBody(req, callback) {
+    let content = ''
 
-    try {
-        registerUser(name, surname, email, password)
-            .then(() => res.redirect('/'))
-            .catch(({ message }) => res.send(View({ body: Register({ path: '/register', error: message }) })))
-    } catch (error) {
-        res.send(View({ body: Register({ path: '/register', error: error.message }) }))
-    }
+    req.on('data', chunk => content += chunk)
+
+    req.on('end', () => {
+        const body = querystring.parse(content)
+
+        callback(body)
+    })
+}
+
+app.post('/register', (req, res) => {
+    parseBody(req, body => {
+        const { name, surname, email, password } = body
+
+        try {
+            registerUser(name, surname, email, password, error => {
+                if (error) return res.send(View({ body: Register({ path: '/register', error: error.message }) }))
+
+                res.redirect('/')
+            })
+        } catch (error) {
+            res.send(View({ body: Register({ path: '/register', error: error.message }) }))
+        }
+    })
 })
 
 app.get('/login', (req, res) => {
     res.send(View({ body: Login({ path: '/login' }) }))
 })
 
-app.post('/login', bodyParser, (req, res) => {
-    const { body: { email, password } } = req
+app.post('/login', (req, res) => {
+    parseBody(req, body => {
+        const { email, password } = body
 
-    try {
-        authenticateUser(email, password, (error, credentials) => {
-            if (error) return res.send('TODO error handling')
+        try {
+            authenticateUser(email, password, (error, credentials) => {
+                if (error) return res.send('TODO error handling')
 
-            const { id, token } = credentials
+                const { id, token } = credentials
 
-            sessions[id] = token
+                sessions[id] = token
 
-            //console.dir(sessions)
+                //console.dir(sessions)
 
-            res.setHeader('set-cookie', `id=${id}`)
+                res.setHeader('set-cookie', `id=${id}`)
 
-            res.redirect('/search')
-        })
-    } catch (error) {
-        // TODO handling
-    }
+                res.redirect('/search')
+            })
+        } catch (error) {
+            // TODO handling
+        }
+    })
 })
 
-app.get('/search', cookieParser, (req, res) => {
+app.get('/search', (req, res) => {
     try {
-        const { cookies: { id } } = req
+        const { headers: { cookie } } = req
 
-        if (!id) return res.redirect('/')
+        if (!cookie) return res.redirect('/')
+
+        const [, id] = cookie.split('id=')
 
         const token = sessions[id]
 
@@ -97,14 +117,20 @@ app.get('/search', cookieParser, (req, res) => {
     }
 })
 
-app.post('/logout', cookieParser, (req, res) => {
+app.post('/logout', (req, res) => {
     res.setHeader('set-cookie', 'id=""; expires=Thu, 01 Jan 1970 00:00:00 GMT')
 
-    const { cookies: { id } } = req
+    const { headers: { cookie } } = req
 
-    if (!id) return res.redirect('/')
+    if (!cookie) return res.redirect('/')
+
+    const [, id] = cookie.split('id=')
+
+    console.log(sessions)
 
     delete sessions[id]
+
+    console.log(sessions)
 
     res.redirect('/')
 })
