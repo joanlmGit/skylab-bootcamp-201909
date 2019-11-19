@@ -1,102 +1,66 @@
+require('dotenv').config
+const {env:{DB_URL_TEST}}=process
 const { expect } = require('chai')
-const registerUser = require('.')
-const { ContentError } = require('../../utils/errors')
-const users = require('../../data/users')
+const CreateTask= require('.')
 const { random } = Math
+const { database } = require('../../utils/database')
+const {objectId}=database
 
-describe('Create - add ', () => {
-    let idTask, title, description, date, user, status
+describe.only('logic - create task', () => {
+    let client, users, tasks
 
-    task=[{idTask:"1"}, {title: "Duskc", description: "Do a web ducks api", date: "24-01-2019", user: "joan", status: "doing" }]
-    
+    before(() => {
+        client = database(DB_URL_TEST)
 
-    it('should succeed on correct create task', () =>
-        CreateTask(idTask, title, description, date, user, status)
-            .then(response => {
-                expect(response).to.be.undefined
+        return client.connect()
+            .then(connection => {
+                const db = connection.db()
 
-                const user = users.find(user => user.username === username)
+                users = db.collection('users')
+                tasks = db.collection('tasks')
+            })
+    })
 
-                expect(user).to.exist
+    let id, name, surname, email, username, password, title, description
 
-                expect(user.name).to.equal(name)
-                expect(user.surname).to.equal(surname)
-                expect(user.email).to.equal(email)
-                expect(user.username).to.equal(username)
-                expect(user.password).to.equal(password)
+    beforeEach(() => {
+        name = `name-${random()}`
+        surname = `surname-${random()}`
+        email = `email-${random()}@mail.com`
+        username = `username-${random()}`
+        password = `password-${random()}`
 
-                const { id } = user
-                expect(id).to.exist
-                expect(id).to.be.a('string')
-                expect(id).to.have.length.greaterThan(0)
+        return users.insertOne({ name, surname, email, username, password })
+            .then(result => {
+                id = result.insertedId.toString()
+
+                title = `title-${random()}`
+                description = `description-${random()}`
+            })
+
+    })
+
+    it('should succeed on correct user and task data', () =>
+        createTask(id, title, description)
+            .then(taskId => {
+                expect(taskId).to.exist
+                expect(taskId).to.be.a('string')
+                expect(taskId).to.have.length.greaterThan(0)
+
+                return tasks.findOne({ _id: ObjectId(taskId) })
+            })
+            .then(task => {
+                expect(task).to.exist
+                expect(task.user.toString()).to.equal(id)
+                expect(task.title).to.equal(title)
+                expect(task.description).to.equal(description)
+                expect(task.status).to.equal('TODO')
+                expect(task.date).to.exist
+                expect(task.date).to.be.instanceOf(Date)
             })
     )
 
-    describe('when user already exists', () => {
-        beforeEach(() => {
-            users.push({ name, surname, email, username, password })
-        })
+    // TODO other test cases
 
-        it('should fail on already existing user', () =>
-            registerUser(name, surname, email, username, password)
-                .then(() => {
-                    throw Error('should not reach this point')
-                })
-                .catch(error => {
-                    expect(error).to.exist
-
-                    expect(error.message).to.exist
-                    expect(typeof error.message).to.equal('string')
-                    expect(error.message.length).to.be.greaterThan(0)
-                    expect(error.message).to.equal(`user with username ${username} already exists`)
-                })
-        )
-    })
-
-    it('should fail on incorrect name, surname, email, password, or expression type and content', () => {
-        expect(() => registerUser(1)).to.throw(TypeError, '1 is not a string')
-        expect(() => registerUser(true)).to.throw(TypeError, 'true is not a string')
-        expect(() => registerUser([])).to.throw(TypeError, ' is not a string')
-        expect(() => registerUser({})).to.throw(TypeError, '[object Object] is not a string')
-        expect(() => registerUser(undefined)).to.throw(TypeError, 'undefined is not a string')
-        expect(() => registerUser(null)).to.throw(TypeError, 'null is not a string')
-
-        expect(() => registerUser('')).to.throw(ContentError, 'name is empty or blank')
-        expect(() => registerUser(' \t\r')).to.throw(ContentError, 'name is empty or blank')
-
-        expect(() => registerUser(name, 1)).to.throw(TypeError, '1 is not a string')
-        expect(() => registerUser(name, true)).to.throw(TypeError, 'true is not a string')
-        expect(() => registerUser(name, [])).to.throw(TypeError, ' is not a string')
-        expect(() => registerUser(name, {})).to.throw(TypeError, '[object Object] is not a string')
-        expect(() => registerUser(name, undefined)).to.throw(TypeError, 'undefined is not a string')
-        expect(() => registerUser(name, null)).to.throw(TypeError, 'null is not a string')
-
-        expect(() => registerUser(name, '')).to.throw(ContentError, 'surname is empty or blank')
-        expect(() => registerUser(name, ' \t\r')).to.throw(ContentError, 'surname is empty or blank')
-
-        expect(() => registerUser(name, surname, 1)).to.throw(TypeError, '1 is not a string')
-        expect(() => registerUser(name, surname, true)).to.throw(TypeError, 'true is not a string')
-        expect(() => registerUser(name, surname, [])).to.throw(TypeError, ' is not a string')
-        expect(() => registerUser(name, surname, {})).to.throw(TypeError, '[object Object] is not a string')
-        expect(() => registerUser(name, surname, undefined)).to.throw(TypeError, 'undefined is not a string')
-        expect(() => registerUser(name, surname, null)).to.throw(TypeError, 'null is not a string')
-
-        expect(() => registerUser(name, surname, '')).to.throw(ContentError, 'e-mail is empty or blank')
-        expect(() => registerUser(name, surname, ' \t\r')).to.throw(ContentError, 'e-mail is empty or blank')
-
-        expect(() => registerUser(name, surname, email, 1)).to.throw(TypeError, '1 is not a string')
-        expect(() => registerUser(name, surname, email, true)).to.throw(TypeError, 'true is not a string')
-        expect(() => registerUser(name, surname, email, [])).to.throw(TypeError, ' is not a string')
-        expect(() => registerUser(name, surname, email, {})).to.throw(TypeError, '[object Object] is not a string')
-        expect(() => registerUser(name, surname, email, undefined)).to.throw(TypeError, 'undefined is not a string')
-        expect(() => registerUser(name, surname, email, null)).to.throw(TypeError, 'null is not a string')
-
-        expect(() => registerUser(name, surname, email, '')).to.throw(ContentError, 'username is empty or blank')
-        expect(() => registerUser(name, surname, email, ' \t\r')).to.throw(ContentError, 'username is empty or blank')
-
-        expect(() => registerUser(name, surname, email, username, '')).to.throw(ContentError, 'password is empty or blank')
-        expect(() => registerUser(name, surname, email, username, ' \t\r')).to.throw(ContentError, 'password is empty or blank')
-    })
-
-    // TODO other cases
+    after(() => client.close())
 })

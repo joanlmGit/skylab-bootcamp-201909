@@ -1,31 +1,21 @@
-const validate = require('../../utils/validate')
-const users = require('../../data/users')
-const fs = require('fs')
-const path = require('path')
-const uuid = require('uuid/v4')
+const validate=require('../../utils/validate')
+const users=require('../../data/users')()
+const {NotFoundError}=require('../..utils/errors')
 
-module.exports = function (name, surname, email, username, password) {
-    validate.string(name)
-    validate.string.notVoid('name', name)
-    validate.string(surname)
-    validate.string.notVoid('surname', surname)
-    validate.string(email)
-    validate.string.notVoid('e-mail', email)
-    validate.email(email)
-    validate.string(username)
-    validate.string.notVoid('username', username)
-    validate.string(password)
-    validate.string.notVoid('password', password)
+module.exports=function(id){
+    validate.string(id)
+    validate.string.notVoid('id',id)
 
-    return new Promise((resolve, reject) => {
-        const user = users.find(user => user.username === username)
+    return new Promise((resolve, reject)=>{
+        const user=users.data.find(user=>user.id===id)
 
-        if (user) return reject(Error(`user with username ${username} already exists`))
+        if (!user) return reject(new NotFoundError(`user with id ${id} not found`))
 
-        const id = uuid()
+        users.lastAccess=new Date
 
-        users.push({ id, name, surname, email, username, password })
-
-        fs.writeFile(path.join(__dirname, '../../data/users/index.json'), JSON.stringify(users), error => error ? reject(error) : resolve())
+        users.persist().then(()=> {
+            const {name, surname, email, usernam}=user
+            resolve ({is, name, surname, email, username})
+        })
     })
 }
