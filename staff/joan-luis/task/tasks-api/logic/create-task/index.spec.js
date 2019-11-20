@@ -1,21 +1,19 @@
-require('dotenv').config
-const {env:{DB_URL_TEST}}=process
+require('dotenv').config()
+const { env: { DB_URL_TEST } } = process
 const { expect } = require('chai')
-const CreateTask= require('.')
+const createTask = require('.')
 const { random } = Math
-const { database } = require('../../utils/database')
-const {objectId}=database
+const database = require('../../utils/database')
+const { ObjectId } = database
 
-describe.only('logic - create task', () => {
+describe('logic - create task', () => {
     let client, users, tasks
 
     before(() => {
         client = database(DB_URL_TEST)
 
         return client.connect()
-            .then(connection => {
-                const db = connection.db()
-
+            .then(db => {
                 users = db.collection('users')
                 tasks = db.collection('tasks')
             })
@@ -30,7 +28,8 @@ describe.only('logic - create task', () => {
         username = `username-${random()}`
         password = `password-${random()}`
 
-        return users.insertOne({ name, surname, email, username, password })
+        return Promise.all([users.deleteMany(), tasks.deleteMany()])
+            .then(() => users.insertOne({ name, surname, email, username, password }))
             .then(result => {
                 id = result.insertedId.toString()
 
@@ -62,5 +61,5 @@ describe.only('logic - create task', () => {
 
     // TODO other test cases
 
-    after(() => client.close())
+    after(() => Promise.all([users.deleteMany(), tasks.deleteMany()]).then(client.close))
 })

@@ -1,6 +1,6 @@
 const validate = require('../../utils/validate')
-const users = require('../../data/users')
 const { CredentialsError } = require('../../utils/errors')
+const database = require('../../utils/database')
 
 module.exports = function (username, password) {
     validate.string(username)
@@ -11,20 +11,21 @@ module.exports = function (username, password) {
     const client = database()
 
     return client.connect()
-        .then(connection =>{
-            const users =connection.db().collection ('users')
+        .then(db => {
+            const users = db.collection('users')
 
-            return users.findOne({username,password})
-                .then(user =>{
+            return users.findOne({ username, password })
+                .then(user => {
                     if (!user) throw new CredentialsError('wrong credentials')
-                     const {_id} = user
 
-                     return users.updateOne({_id}, {$set: {lastAccess: new Date}})
-                     .then( result => {
-                        if (!user.modifiedCount) throw Error ('could not update user')
+                    const { _id } = user
 
-                        return _id.toString()
-                     })
+                    return users.updateOne({ _id }, { $set: { lastAccess: new Date } })
+                        .then(result => {
+                            if (!result.modifiedCount) throw Error('could not update user')
+
+                            return _id.toString()
+                        })
                 })
         })
 }

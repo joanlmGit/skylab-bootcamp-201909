@@ -1,21 +1,25 @@
-const validate=require('../../utils/validate')
-const users=require('../../data/users')()
-const {NotFoundError}=require('../..utils/errors')
+const validate = require('../../utils/validate')
+const { ConflictError } = require('../../utils/errors')
+const { models: { User } } = require('../../data')
 
-module.exports=function(id){
-    validate.string(id)
-    validate.string.notVoid('id',id)
+module.exports = function (name, surname, email, username, password) {
+    validate.string(name)
+    validate.string.notVoid('name', name)
+    validate.string(surname)
+    validate.string.notVoid('surname', surname)
+    validate.string(email)
+    validate.string.notVoid('e-mail', email)
+    validate.email(email)
+    validate.string(username)
+    validate.string.notVoid('username', username)
+    validate.string(password)
+    validate.string.notVoid('password', password)
 
-    return new Promise((resolve, reject)=>{
-        const user=users.data.find(user=>user.id===id)
+    return User.findOne({ username })
+        .then(user => {
+            if (user) throw new ConflictError(`user with username ${username} already exists`)
 
-        if (!user) return reject(new NotFoundError(`user with id ${id} not found`))
-
-        users.lastAccess=new Date
-
-        users.persist().then(()=> {
-            const {name, surname, email, usernam}=user
-            resolve ({is, name, surname, email, username})
+            return User.create({ name, surname, email, username, password })
         })
-    })
+        .then(() => { })
 }
