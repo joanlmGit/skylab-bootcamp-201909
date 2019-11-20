@@ -52,15 +52,29 @@ describe('logic - authenticate user', () => {
         it('should fail on wrong password', () => {
             const password = 'wrong'
 
-            return authenticateUser(username, password)
-                .then(() => { throw new Error('should not reach this point') })
-                .catch(error => {
+            return (async function (){
+                
+                try {
+                    
+                        res=authenticateUser(username, password)
+                        
+                    
+                
+                    { throw new Error('should not reach this point') })
+                    
+                    let result = await promise; 
+                    
+
+                }catch {
                     expect(error).to.exist
                     expect(error).to.be.an.instanceOf(CredentialsError)
 
                     const { message } = error
                     expect(message).to.equal(`wrong credentials`)
-                })
+                } 
+
+            })()
+                
         })
     })
 
