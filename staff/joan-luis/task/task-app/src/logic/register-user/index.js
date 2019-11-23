@@ -17,12 +17,12 @@ module.exports= function (name, surname, email, username, password){
     return (async ()=>{
         const res=await call (`${API_URL}/users`, {
             method: 'POST',
-            headers: {'content-type': 'aplication, json'},
+            headers: {'content-type': 'aplication/json'},
             body: JSON.stringify({name, surname, email, username, password})
         })
 
         if (res.status===201) return
 
-        thorw new Error(JSON.parse(res.body).message)
+        throw new Error(JSON.parse(res.body).message)
     })()
 }
