@@ -1,5 +1,4 @@
-const validate = require('../../utils/validate')
-const { CredentialsError } = require('../../utils/errors')
+const {validate, errors: {CrediantilsError}} = require('task-utils')
 const { models: { User }} = require('../../data')
 
 module.exports = function (username, password) {
@@ -8,12 +7,15 @@ module.exports = function (username, password) {
     validate.string(password)
     validate.string.notVoid('password', password)
 
-    return User.findOne({ username, password })
-        .then(user => {
-            if (!user) throw new CredentialsError('wrong credentials')
+    return (async ()=> {
+        const user= await User.FindOne({usrname, password})
 
-            user.lastAccess = new Date
+        if (!user) throw new CredentialsError ('worng credentials')
 
-            return user.save().then(() => user.id)
-        })
+        user.lastAcces=new Date
+
+        await user.save()
+
+        return user.id
+    })
 }

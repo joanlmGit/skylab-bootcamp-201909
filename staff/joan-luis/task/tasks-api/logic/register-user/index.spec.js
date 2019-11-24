@@ -1,13 +1,13 @@
 require('dotenv').config()
-const { env: { DB_URL_TEST } } = process
+const { env: { TEST_DB_URL} } = process
 const { expect } = require('chai')
 const registerUser = require('.')
-const { ContentError } = require('../../utils/errors')
+const { errors: {ContentError }} = require('tasks-util')
 const { random } = Math
-const { database, models: { User } } = require('../../data')
+const { database, models: { User } } = require('tasks-data')
 
 describe('logic - register user', () => {
-    before(() => database.connect(DB_URL_TEST))
+    before(() => database.connect(TEST_DB_URL))
 
     let name, surname, email, username, password
 
@@ -100,8 +100,6 @@ describe('logic - register user', () => {
         expect(() => registerUser(name, surname, email, username, '')).to.throw(ContentError, 'password is empty or blank')
         expect(() => registerUser(name, surname, email, username, ' \t\r')).to.throw(ContentError, 'password is empty or blank')
     })
-
-    // TODO other cases
 
     after(() => User.deleteMany().then(database.disconnect))
 })
