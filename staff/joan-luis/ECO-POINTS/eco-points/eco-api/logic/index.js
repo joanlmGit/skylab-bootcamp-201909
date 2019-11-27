@@ -1,0 +1,8 @@
+module.exports = {
+    authenticateUser: require('./authenticate-user'),
+    registerUser: require('./register-user'),
+    retrieveUser: require('./retrieve-user'),
+    createPoint: require('./create-point'),
+    listPicture: require('./list-picture'),
+    modifyPoint: require('./modify-point'),
+}
