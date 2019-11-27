@@ -1,5 +1,5 @@
-const { validate, errors: { CredentialsError } } = require('tasks-util')
-const { models: { User } } = require('tasks-data')
+const { validate, errors: { CredentialsError } } = require('points-util')
+const { models: { User } } = require('points-data')
 
 module.exports = function (username, password) {
     validate.string(username)

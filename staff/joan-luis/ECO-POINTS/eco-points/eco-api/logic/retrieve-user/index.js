@@ -1,5 +1,5 @@
-const { validate, errors: { NotFoundError, ContentError } } = require('tasks-util')
-const { ObjectId, models: { User } } = require('tasks-data')
+const { validate, errors: { NotFoundError, ContentError } } = require('points-util')
+const { ObjectId, models: { User } } = require('point-data')
 
 module.exports = function (id) {
     validate.string(id)

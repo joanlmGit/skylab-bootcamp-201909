@@ -1,7 +1,7 @@
 const { model } = require('mongoose')
-const { user, task } = require('./schemas')
+const { user, points } = require('./schemas')
 
 module.exports = {
     User: model('User', user),
-    Task: model('Task', task)
+    Points: model('Points', points)
 }
