@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <section class="view landing">
+        <h1 class="landing__title">Welcome to Eco Points </h1>
+    </section> 
+    <section class="view map">
+        <div class="map">
+            <iframe class="map__field" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2992.876977774634!2d2.1999809742642316!3d41.398477963736156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4a257ee099f33%3A0x7245a39d4ec50228!2sSkylab%20Coders%20Academy!5e0!3m2!1ses!2ses!4v1574702177212!5m2!1ses!2ses" width="" height="200" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+        </div>
+    </section>
+    <section class="view loadpicture">
+        <form>
+            <h1 class="loadpicture__title">Load Picture</h1>
+            <input type='file' onchange="readURL(this);" />
+            <img id="blah" src="#" alt="your image" />
+            <button class="loadpicture__submit">Load</button>
+        </form>
+    </section>
+    <section class="view login">
+        <form>
+            <h1 class="login__title">Login</h1>
+            <input class="login__field" type="email" name="email" placeholder="e-mail">
+            <input class="login__field" type="password" name="password" placeholder="password">
+            <button class="login__submit">🗝</button>
+        </form>
+
+        <section class="feedback">
+            <p class="feedback__message">Come with me...</p>
+        </section>
+    </section>
+    <section class="view register">
+        <form>
+            <h1 class="register__title">Register</h1>
+            <input class="register__field" type="text" name="name" placeholder="name">
+            <input class="register__field" type="text" name="surname" placeholder="surname">
+            <input class="register__field" type="email" name="email" placeholder="e-mail">
+            <input class="register__field" type="password" name="password" placeholder="password">
+            <button class="register__submit">📨</button>
+        </form>
+
+        <section class="feedback">
+            <p class="feedback__message">Come with me...</p>
+        </section>
+    </section>
+
+</body>
+</html>
