@@ -15,9 +15,7 @@ module.exports =  new Schema({
 
     status: {
         type: Boolean,
-        required: true,
-        default: 'false'
-        
+        required: true,        
     }
     
 })

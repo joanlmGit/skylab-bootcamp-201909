@@ -1,5 +1,5 @@
 {
-  "name": "eco-points",
+  "name": "client",
   "version": "1.0.0",
   "description": "Users will be able to mark garbage points found in any place they visit, mountains, beaches, ocean",
   "main": "index.js",
