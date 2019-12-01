@@ -3,14 +3,14 @@ const { Schema, ObjectId } = require('mongoose')
 module.exports =  new Schema({
     
     user: { 
-        type: mongoose.Schema.Types.ObjectId, 
+        type: ObjectId, 
         ref: 'user'
     },
     
     
-    location: { 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'location'
+    garbage: { 
+        type: ObjectId, 
+        ref: 'garbage'
     },
     
     

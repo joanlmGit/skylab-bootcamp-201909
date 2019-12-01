@@ -1,7 +1,8 @@
 const { model } = require('mongoose')
-const { user, points } = require('./schemas')
+const { user, garbage, action } = require('./schemas')
 
 module.exports = {
     User: model('User', user),
-    Points: model('Points', points)
+    Garbage: model('Garbage', garbage),
+    Action: model('Action', action),
 }

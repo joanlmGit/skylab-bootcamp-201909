@@ -1,19 +1,12 @@
-const { Schema, ObjectId } = require('mongoose')
+const { Schema } = require('mongoose')
 
 module.exports =  new Schema({
-    
-       
-    
-    location: { 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'location'
+     
+    location: {
+        type: "Point",
+        coordinates: []
     },
-    
-    
-    image: {
-        type: Array,
-        required: true
-    },
+   
 
     description: {
         type: String,
@@ -25,13 +18,6 @@ module.exports =  new Schema({
         required: true,
         default: 'false'
         
-    },
-    date: {
-        type: Date,
-        required: true,
-        default: Date.now
-    },
-    lastAccess: {
-        type: Date
     }
+    
 })
