@@ -1,7 +1,7 @@
 const fs = require('fs') 
 const { env: { IMG_URL } } = process
-const { module: {Garbage} }=require('point-data')
-const {_id}=Garbage
+
+
 
 module.exports = () => {
 

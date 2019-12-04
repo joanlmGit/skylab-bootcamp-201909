@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Landing from '../Landing'
 import Register from '../Register'
 import Login from '../Login'
+import 
 
 import { Route, withRouter, Redirect } from 'react-router-dom'
 import { authenticateUser, registerUser, retrieveUser, listPicture, modifyPoint, createPoint } from '../../logic'
@@ -66,7 +67,7 @@ export default withRouter(function ({ history }) {
         handleGoBack()
     }
 
-    async function handleChangeTaskStatus(id, status) {
+    async function handleChangeGarbageStatus(id, status) {
         try {
             const { token } = sessionStorage
 

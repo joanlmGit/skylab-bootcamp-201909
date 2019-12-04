@@ -6,7 +6,7 @@ const { argv: [, , port], env: { PORT = port || 8080, DB_URL } } = process
 const cors = require('cors')
 const { database } = require('point-data')
 
-const { users } = require('./routes')
+const { users, garbage } = require('./routes')
 
 const api = express()
 

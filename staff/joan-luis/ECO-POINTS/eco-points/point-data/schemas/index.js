@@ -1,5 +1,5 @@
 module.exports = {
-    user: require('./user'),
+    user: require('./user') ,
     garbage: require('./garbage'),
-    action: require('./action'),
+    //action: require('./action'), 
 }

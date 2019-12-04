@@ -5,10 +5,10 @@ const { random } = Math
 const { errors: { ContentError } } = require('points-utils')
 const { database, models: { Garbage } } = require('point-data')
 
-describe('logic - create pooint', () => {
+describe('logic - create garbage', () => {
     before(() => database.connect(TEST_DB_URL))
 
-    let longitude, latitude, decription, status
+    let longitude, latitude, status, status
 
     beforeEach(() => {
         longitude= `${random()}`
