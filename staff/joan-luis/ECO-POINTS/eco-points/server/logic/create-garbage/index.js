@@ -12,8 +12,8 @@ module.exports=function (location, name, status){
     return (async ()=> {debugger
         //const garbage= await garbage.findOne( {/* _id?*/} )
         const pointgarbege = await Garbage.create ({location, name, status})
-
-         return idpoint=pointgarbege.id 
+        debugger
+         return pointgarbege.id 
          
         
     })()

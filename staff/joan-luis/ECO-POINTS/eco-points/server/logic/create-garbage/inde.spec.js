@@ -8,7 +8,7 @@ const { database, models: { Garbage } } = require('point-data')
 describe('logic - create garbage', () => {
     before(() => database.connect(TEST_DB_URL))
 
-    let longitude, latitude, status, status
+    let longitude, latitude, status
 
     beforeEach(() => {
         longitude= `${random()}`

@@ -20,6 +20,8 @@ module.exports =  new Schema({
         required: true
     },
 
+
+
     status: {
         type: Boolean,
         required: false, // false- not clean, true, clean        
