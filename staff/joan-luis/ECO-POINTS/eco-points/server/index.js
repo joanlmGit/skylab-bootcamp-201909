@@ -19,7 +19,7 @@ api.options('*', cors, (req, res) => {
 api.use('/users', users)
 api.use('/garbage', garbage)
 api.use('/images', image)
-
+ 
 database
     .connect(DB_URL)
     .then(() => api.listen(PORT, () => console.log(`${name} ${version} up and running on port ${PORT}`)))
