@@ -1,4 +1,21 @@
-export function getLocation() {
+const call = require('../../utils/call')
+const { validate, errors: { ConflictError } } = require('eco-points-utils')
+// const { env: { REACT_APP_API_URL: API_URL } } = process
+const API_URL = process.env.REACT_APP_API_URL
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* export function getLocation() {
 	return new Promise((resolve) => {
 	  navigator.geolocation.getCurrentPosition((position) => {
 		resolve({
@@ -16,5 +33,5 @@ export function getLocation() {
 		  }));
 	  });
 	});
-  }
+  } */
   

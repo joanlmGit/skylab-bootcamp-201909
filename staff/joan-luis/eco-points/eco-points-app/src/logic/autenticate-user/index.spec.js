@@ -1,8 +1,8 @@
 const { env: { REACT_APP_TEST_DB_URL: TEST_DB_URL } } = process
 const authenticateUser = require('.')
 const { random } = Math
-const { errors: { ContentError, CredentialsError } } = require('tasks-util')
-const { database, models: { User } } = require('tasks-data')
+const { errors: { ContentError, CredentialsError } } = require('eco-points-utils')
+const { database, models: { User } } = require('eco-points-data')
 
 describe('logic - authenticate user', () => {
     beforeAll(() => database.connect(TEST_DB_URL))

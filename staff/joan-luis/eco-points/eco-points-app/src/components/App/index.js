@@ -3,14 +3,14 @@ import './index.css'
 import Landing from '../Landing'
 import Register from '../Register'
 import Login from '../Login'
-
+import Addgarbage from '../AddGarbage'
 import { Route, withRouter, Redirect } from 'react-router-dom'
-import { authenticateUser, registerUser, retrieveUser, listTasks, modifyTask, createTask } from '../../logic' 
+import { authenticateUser, registerUser, retrieveUser, listTasks, modifyTask, createGarabge } from '../../logic' 
 
 
 export default withRouter(function ({ history }) {
    
-   const [location, setLocation]=useState()
+   
    
    
    
@@ -66,6 +66,7 @@ export default withRouter(function ({ history }) {
         <Route exact path="/" render={() =>  <Landing/>} />
         <Route path="/register" render={() => <Register onRegister={handleRegister} onBack={handleGoBack} /> } />
         <Route path="/login" render={() => <Login onLogin={handleLogin} onBack={handleGoBack} />} />
+        <Route path="/AddGarbage" render0{() => <Addgarbage onGarbage ={handleAddgarbage}/>}/>
     </>
 })
 
