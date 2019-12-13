@@ -4,13 +4,17 @@
  *              .catch(console.error)
  */
 export default function () {
+    
+    
     return Promise((resolve, reject) => {
+       
         navigator.geolocation.getCurrentPosition(position =>
             resolve({
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
+                lng: position.coords.longitude,
+                lat: position.coords.latitude
             }),
-            reject)
+  
+            reject(Error))
     })
 }
 

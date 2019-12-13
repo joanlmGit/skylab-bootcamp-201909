@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-//import './index.sass'
+
 import Feedback from '../Feedback'
 
 export default function({ onLogin, onBack, error }) {

@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import './index.css'
+import React, {useEffect,useState} from 'react';
+//import './index.css'
 import Landing from '../Landing'
 import Register from '../Register'
 import Login from '../Login'
 import Addgarbage from '../AddGarbage'
 import { Route, withRouter, Redirect } from 'react-router-dom'
-import { authenticateUser, registerUser, retrieveUser, listTasks, modifyTask, createGarabge } from '../../logic' 
+import { authenticateUser, registerUser, retrieveUser, createGarabge } from '../../logic' 
 
 
 export default withRouter(function ({ history }) {
-   
-   
    
    
    
@@ -21,12 +19,15 @@ export default withRouter(function ({ history }) {
 
     }, [sessionStorage.token])
 
-  
+    async function handleAddgarbage (location, name, status,uploadimage){
+        try{
+            await createGarabge ()
+        }catch (error){
 
-    function handleGoToRegister() { history.push('/register') }
+        }
+    }
 
-    function handleGoToLogin() { history.push('/login') }
-
+    
     async function handleRegister(name, surname, email, username, password) {
         try {
             await registerUser(name, surname, email, username, password)
@@ -49,26 +50,20 @@ export default withRouter(function ({ history }) {
         }
     }
 
-    function handleGoBack() { history.push('/') }
-
-    function handleLogout() {
-        sessionStorage.clear()
-
-        handleGoBack()
-    }
+    
  
 
 
 
     const { token } = sessionStorage 
-
+ 
     return <>
         <Route exact path="/" render={() =>  <Landing/>} />
-        <Route path="/register" render={() => <Register onRegister={handleRegister} onBack={handleGoBack} /> } />
-        <Route path="/login" render={() => <Login onLogin={handleLogin} onBack={handleGoBack} />} />
-        <Route path="/AddGarbage" render0{() => <Addgarbage onGarbage ={handleAddgarbage}/>}/>
+        <Route path="/Register" render={() => <Register onRegister={handleRegister}  /> } />
+        <Route path="/login" render={() => <Login onLogin={handleLogin}  />} />
+        <Route path="/AddGarbage" render={() => <Addgarbage onGarbage ={handleAddgarbage}/>}/>
     </>
 })
 
 
-      
+     

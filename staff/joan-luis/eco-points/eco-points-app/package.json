@@ -1,9 +1,10 @@
 {
-  "name": "client",
+  "name": "eco-point-app",
   "version": "0.1.0",
   "dependencies": {
     "leaflet": "^1.6.0",
     "eco-points-utils": "file:../eco-points-utils",
+    "eco-points-data": "file:../eco-points-data",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-leaflet": "^2.6.0",
@@ -15,7 +16,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --runInBand --no-cache",
+    "test:debug": "react-scripts inspect test --runInBand --no-cache",
+    "sass": "sass template/index.sass template/index.css",
+    "sass:watch": "sass --watch template/index.sass template/index.css",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -34,8 +38,8 @@
     ]
   },
   "devDependencies": {
+    "eco-points-data": "file:../eco-points-data",
     "jsonwebtoken": "^8.5.1",
-    "node-sass": "^4.13.0",
-    "eco-points-data": "file:../eco-points-data"
+    "node-sass": "^4.13.0"
   }
 }

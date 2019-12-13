@@ -1,17 +1,24 @@
 const call = require('../../utils/call')
 const { validate, errors: { ConflictError } } = require('eco-points-utils')
-// const { env: { REACT_APP_API_URL: API_URL } } = process
+const retrieveGeoLocation =require('../../utils/retrieve-geo-location')
 const API_URL = process.env.REACT_APP_API_URL
 
+module.exports=function (name, fileImage, lng, lat){
+	//validations
+	retrieveGeoLocation(lng,lat)
+              .then(({lng, lat}) => (lng, lat))
+              .catch(console.error)	
 
+	return (async () => {
+		const res= await call (`${API_URL}/garbage`, {
+			method: 'POST',
+			headers: {'content-type':'application/json'},
+			body: JSON.stringify({name, fileImage, })
+		})
+	})
+}
 
-
-
-
-
-
-
-
+//const denver = { type: 'Point', coordinates: [-104.9903, 39.7392] }
 
 
 

@@ -9,17 +9,19 @@ require('../../helpers/jest-matchers')
 describe('logic - create point', () => {
     beforeAll(() => database.connect(TEST_DB_URL))
 
-    let id, latitude, longitude, name,status
+    let id, latitude, longitude, name,status, token
 
     beforeEach(async () => {
         name = `name-${random()}`
-        latitude = Math.floor(Math.random()*(360-180)+180)
-        longitude= Math.floor(Math.random()(180-90)+90)
+        latitude = random(180)
+        longitude= random(90)
         status = false
         
-        let location =[{latitude, longitude}]
+        let location ={
+            type:'Point',
+            coordinates:[latitude, longitude]}
 
-        await Promise.all([garbage.deleteMany()])
+        await Promise.all([Garbage.deleteMany()])
 
         const pointgarbage = await Garbage.create({ name, location,status })
 
