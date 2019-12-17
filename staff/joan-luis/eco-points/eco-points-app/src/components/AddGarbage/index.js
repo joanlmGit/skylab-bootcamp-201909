@@ -1,48 +1,51 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import Feedback from '../Feedback'
-//import './index.css'
-import {lat, lng} from '../../utils/retrieve-geo-location'
+import {ContentError} from '../../../../eco-points-utils/errors'
+import Context from '../Context'
 
 
-export default function({ onGarbage, error }) {
-    
-    const [UploadImage, setUploadImage] = useState('')
-    const [name_user, setname_user]=useState('')
-    
 
-   
-    return <section className = "view landing">
-        <form className="addGarbage" enctype="multipart/form-data" onSubmit = { function (event) {
-            event.preventDefault()
 
-            const { name: { value: name_user } } = event.target.value
-            const {UploadImage: { value: UploadImage }}= event.target.files[0]
-            const dataForm = UploadImage
-            let fs = new FormData()
 
-            fs.append("file", dataForm)
-            console.log(dataForm)
-            onGarbage(name_user, fs)
-            setUploadImage('')
-            setname_user ('')
 
-        }}>
-                <h1 className='map__title'>Welcome to Eco Points </h1>
-                
-                <input  type="text" name="name_user" placeholder="enter your name"></input>
-                <input  type="file" name="UploadImage" accept="image/png" > </input>
-                <button className="load_submit">Submit</button>
+ function addGarbage({ onGarbage, error }) {
+    debugger
+    /*const [UploadImage, setUploadImage] = useState('')
+    const [name_user, setname_user] = useState('')*/
+
+    debugger
+
+    async function handleUploadImage(e){
+        e.preventDefault()
+        try{
+            const {username: { value: username }, file: { files : [image]}} = e.target
             
-        
+            onGarbage(username,image )
+            
+        } catch(error){
+            ContentError(error.message)
+        }
+    }
+
+    return <section className="view landing">
+        <form className="addGarbage" encType="multipart/form-data" onSubmit= { handleUploadImage }>
+            <h1 className='map__title'>Welcome to Eco Points </h1>
+            <label>Enter your name</label>
+            <input type="text" name="username" placeholder="enter your name"></input>
+            <label>Upload image </label>
+            <input type="file" name="file" className="file" accept="image/jpg/npg"></input>
+            <button className="save_garbage">Submit</button>
+
+
         </form>
         {error && <Feedback message={error} />}
     </section>
 
 }
 
-//formData.append("userfile", fileInputElement.files[0]);
-/* const dataForm = document.getElementsByClassName('addGarbage')
+export default addGarbage
+/* 
     const dataForm = input.files[0];
-    
+
     var fd = new FormData();
     fd.append("file", dataForm); */

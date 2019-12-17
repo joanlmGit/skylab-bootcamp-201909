@@ -1,44 +1,38 @@
 const call = require('../../utils/call')
 const { validate, errors: { ConflictError } } = require('eco-points-utils')
-const retrieveGeoLocation =require('../../utils/retrieve-geo-location')
+
 const API_URL = process.env.REACT_APP_API_URL
 
-module.exports=function (name, fileImage, lng, lat){
+export default function (longitude, latitude, name) {
 	//validations
-	retrieveGeoLocation(lng,lat)
-              .then(({lng, lat}) => (lng, lat))
-              .catch(console.error)	
+	
+	
+	validate.string( name)
+    validate.string.notVoid('name', name)
+	validate.number(longitude)
+	validate.number(latitude)
+	
+	
+
 
 	return (async () => {
-		const res= await call (`${API_URL}/garbage`, {
+		const res = await call(`${API_URL}/garbage`, {
 			method: 'POST',
-			headers: {'content-type':'application/json'},
-			body: JSON.stringify({name, fileImage, })
+			headers: { 'content-type': 'application/json' },
+			body: JSON.stringify({longitude, latitude, name})
 		})
+
+		if (res.status === 201) return
+        
+        if (res.status === 409) throw new ConflictError(JSON.parse(res.body).message)
+
+        throw new Error(JSON.parse(res.body).message)
+
 	})
 }
 
 //const denver = { type: 'Point', coordinates: [-104.9903, 39.7392] }
+//la composicion del schema de location se debe gestionas en api
 
 
 
-/* export function getLocation() {
-	return new Promise((resolve) => {
-	  navigator.geolocation.getCurrentPosition((position) => {
-		resolve({
-		  lat: position.coords.latitude,
-		  lng: position.coords.longitude
-		});
-	  }, () => {      
-		resolve(fetch('https://ipapi.co/json')
-		  .then(res => res.json())
-		  .then(location => {
-			return {
-			  lat: location.latitude,
-			  lng: location.longitude
-			};
-		  }));
-	  });
-	});
-  } */
-  

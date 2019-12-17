@@ -1,6 +1,7 @@
 import React, {useEffect,useState} from 'react';
 //import './index.css'
 import Landing from '../Landing'
+import Menu from '../Menu'
 import Register from '../Register'
 import Login from '../Login'
 import Addgarbage from '../AddGarbage'
@@ -50,14 +51,12 @@ export default withRouter(function ({ history }) {
         }
     }
 
-    
- 
-
 
 
     const { token } = sessionStorage 
  
     return <>
+        <Route exact path="/" render={() =>  <Menu/>} />
         <Route exact path="/" render={() =>  <Landing/>} />
         <Route path="/Register" render={() => <Register onRegister={handleRegister}  /> } />
         <Route path="/login" render={() => <Login onLogin={handleLogin}  />} />
@@ -66,4 +65,4 @@ export default withRouter(function ({ history }) {
 })
 
 
-     
+    
