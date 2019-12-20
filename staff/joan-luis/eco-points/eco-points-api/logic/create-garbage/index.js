@@ -9,7 +9,7 @@ module.exports=function (location, name, status){
     validate.boolean(status)
     
     
-    return (async ()=> {debugger
+    return (async ()=> {
         //const garbage= await garbage.findOne( {/* _id?*/} )
         const pointgarbege = await Garbage.create ({location, name, status})
         

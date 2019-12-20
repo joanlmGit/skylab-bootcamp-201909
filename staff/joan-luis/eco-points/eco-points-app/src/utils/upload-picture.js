@@ -1,7 +1,7 @@
 
 const URL_APP_API= process.env.REACT_APP_API_URL
 
-export default function (image){
+export default function (idpointGarbage,image){
     let fs=new FormData()
     fs.append('file',image)
 
@@ -9,7 +9,7 @@ export default function (image){
     return (async () => {
 
 
-        const response = await fetch (`${URL_APP_API}/data/images`, {
+        const response = await fetch (`${URL_APP_API}/data/images/{idpointGarbage}`, {
             method: 'POST',
             body: FormData
         })

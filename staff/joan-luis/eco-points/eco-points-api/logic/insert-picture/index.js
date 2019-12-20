@@ -4,6 +4,7 @@ const { ObjectId, models: { garbage } } = require('eco-points-data')
 const fs = require('fs')
 const path = require('path')
 
+
 /**
 * Saves  image.
 * 
@@ -29,11 +30,11 @@ module.exports = function (id, file, filename) {
         //const wish = user.wishes.find(wish => wish.id === wishId)        
         //if (!wish) throw new NotFoundError(`user does not have task with id ${wishId}`)
         
-        const dir = `./routes/garbage/imagenes/${id}`
-        if (!fs.existsSync(dir)){debugger
+        const dir = `./data/images/${id}`
+        if (!fs.existsSync(dir)){
             fs.mkdirSync(dir)
         }
-        let saveTo = path.join(__dirname, `../../routes/garbage/imagenes/${id}/${filename}.png`)
+        let saveTo = path.join(__dirname, `../../data/images/${id}/${filename}.png`)
         return file.pipe(fs.createWriteStream(saveTo))            
     })()
 }

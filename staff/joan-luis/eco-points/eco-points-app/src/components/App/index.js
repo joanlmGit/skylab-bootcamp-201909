@@ -6,7 +6,7 @@ import Register from '../Register'
 import Login from '../Login'
 import Addgarbage from '../AddGarbage'
 import { Route, withRouter, Redirect } from 'react-router-dom'
-import { authenticateUser, registerUser, retrieveUser, createGarabge } from '../../logic' 
+import Logic from '../../logic' 
 
 
 export default withRouter(function ({ history }) {
@@ -20,18 +20,12 @@ export default withRouter(function ({ history }) {
 
     }, [sessionStorage.token])
 
-    async function handleAddgarbage (location, name, status,uploadimage){
-        try{
-            await createGarabge ()
-        }catch (error){
-
-        }
-    }
+    
 
     
     async function handleRegister(name, surname, email, username, password) {
         try {
-            await registerUser(name, surname, email, username, password)
+            await Logic.registerUser(name, surname, email, username, password)
 
             history.push('/login')
         } catch (error) {
@@ -41,11 +35,11 @@ export default withRouter(function ({ history }) {
 
     async function handleLogin(username, password) {
         try {
-            const token = await authenticateUser(username, password)
+            const token = await Logic.authenticateUser(username, password)
 
             sessionStorage.token = token
 
-            history.push('/board')
+            history.push('/Landing')
         } catch (error) {
             console.error(error)
         }
@@ -60,7 +54,7 @@ export default withRouter(function ({ history }) {
         <Route exact path="/" render={() =>  <Landing/>} />
         <Route path="/Register" render={() => <Register onRegister={handleRegister}  /> } />
         <Route path="/login" render={() => <Login onLogin={handleLogin}  />} />
-        <Route path="/AddGarbage" render={() => <Addgarbage onGarbage ={handleAddgarbage}/>}/>
+        <Route path="/AddGarbage" render={() => <Addgarbage/>}/>
     </>
 })
 

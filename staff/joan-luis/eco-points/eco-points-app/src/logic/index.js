@@ -1,8 +1,27 @@
-module.exports = {
-    authenticateUser: require('./autenticate-user'),
-    registerUser: require('./register-user'),
-    retrieveUser: require('./retrieve-user'),
-    createGarabge: require('./create-garbage'),
-    listImages: require('./list-picture'),
-    //modifyPoint: require('./modify-point'),
+
+import authenticateUser from './autenticate-user'
+import registerUser from './register-user'
+import retrieveUser from './retrieve-user'
+import createGarbage from './create-garbage'
+import listImages from './list-pictures'
+import modifyPoint from './clean-garbage'
+
+
+
+export default {
+    set __credentials__({ id, token }) {
+        sessionStorage.id = id
+        sessionStorage.token = token
+    },
+    get __credentials__() {
+        const { id, token } = sessionStorage
+
+        return { id, token }
+    },
+    registerUser,
+    authenticateUser,
+    retrieveUser,
+    createGarbage,
+    listImages,
+    modifyPoint
 }

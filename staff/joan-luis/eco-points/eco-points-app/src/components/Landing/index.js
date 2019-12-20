@@ -26,7 +26,7 @@ function MapLanding({ history }) {
 
   useEffect(() => {
     setZoom(17)
-
+   
     const interval = setInterval(() => {
       
       navigator.geolocation.getCurrentPosition(position => {
@@ -34,15 +34,10 @@ function MapLanding({ history }) {
         const longitude = position.coords.longitude;
         
         (async function (longitude, latitude){
-          //await logic.updateDinamicLocation(Number(longitude), Number(latitude))
-
-          
-          //const {static: users} = await logic.retrieveAllUsers(4000)
           
           setPosition([latitude, longitude])
-          //setNameUser(user)
-          
           setHaveUsersLocation(true)
+          
         })(longitude, latitude)
 
       }, error => console.log(error.message))
@@ -61,7 +56,6 @@ function MapLanding({ history }) {
       />
       { haveUsersLocation ? <Marker position={position} icon={iconPos}></Marker> : '' }
     
-      
     </Map>
 }
 export default withRouter(MapLanding)

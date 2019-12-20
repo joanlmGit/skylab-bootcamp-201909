@@ -6,11 +6,11 @@ const API_URL = process.env.REACT_APP_API_URL
 export default function (longitude, latitude, name) {
 	//validations
 	
-	
+	//validate.number(longitude)
+	//validate.number(latitude)
 	validate.string( name)
     validate.string.notVoid('name', name)
-	validate.number(longitude)
-	validate.number(latitude)
+	
 	
 	
 

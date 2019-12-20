@@ -1,5 +1,5 @@
 require('dotenv').config()
-debugger
+
 
 const express = require('express')
 const { name, version } = require('./package.json')
@@ -21,7 +21,6 @@ api.use('/images', image)
 database
     .connect(DB_URL)
     .then(() => {
-        debugger
 
         api.listen(PORT, () => console.log(`${name} ${version} up and running on port ${PORT}`))
     })
