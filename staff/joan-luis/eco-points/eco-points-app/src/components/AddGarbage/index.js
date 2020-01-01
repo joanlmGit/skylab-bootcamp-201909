@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import Feedback from '../Feedback'
 import { ContentError } from 'eco-points-utils'
-//import retrieveGeoLocation from '../../utils/retrieve-geo-location'
+import {Link} from 'react-router-dom'
 import uploadImage from '../../utils/upload-picture'
-
+import './index.css'
 import Logic from '../../logic'
 
 
@@ -49,15 +49,16 @@ export default function ({ error }) {
             }
         }
     }
-        return <section className="view landing">
+        return <section className="view-landing">
+            <img url="../../images/cuidado-natura.png" className="avatar" alt="Avatar Image"></img>
+            <h1>Add garbage Here</h1>
             <form className="addGarbage" encType="multipart/form-data" onSubmit={handleSetData}>
-
-                <label>Enter your name</label>
+                
                 <input type="text" name="username" placeholder="enter your name"></input>
-                <label>Upload image </label>
-                <input type="file" name="file" accept="image/*"></input>
-                <button className="save_garbage">Submit</button>
-
+                <input type="file" name="file" accept="image/*" placeholder="select file"></input>
+                <input className="save_garbage" type="submit" value="add garbage"></input>
+                <Link className="landing__link" to='/register'>Go to Regiser</Link>
+                <Link className="landing__link" to='/'>Go to Map</Link>
 
             </form>
             {error && <Feedback message={error} />}

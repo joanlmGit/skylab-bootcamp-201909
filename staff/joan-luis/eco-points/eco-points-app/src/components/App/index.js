@@ -1,5 +1,6 @@
 import React, {useEffect,useState} from 'react';
-//import './index.css'
+import './App.css'
+import '../Menu/index.css'
 import Landing from '../Landing'
 import Menu from '../Menu'
 import Register from '../Register'
@@ -39,7 +40,7 @@ export default withRouter(function ({ history }) {
 
             sessionStorage.token = token
 
-            history.push('/Landing')
+            history.push('/')
         } catch (error) {
             console.error(error)
         }

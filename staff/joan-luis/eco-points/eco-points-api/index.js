@@ -15,7 +15,7 @@ api.use(cors())
 
 api.use('/users', users)
 api.use('/garbage', garbage)
-api.use('/images', image)
+api.use('/image', image)
 
  
 database

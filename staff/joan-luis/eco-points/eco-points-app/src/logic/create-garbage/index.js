@@ -22,7 +22,7 @@ export default function (longitude, latitude, name) {
 			body: JSON.stringify({longitude, latitude, name})
 		})
 
-		if (res.status === 201) return
+		if (res.status === 201) return JSON.parse(res.body)
         
         if (res.status === 409) throw new ConflictError(JSON.parse(res.body).message)
 
