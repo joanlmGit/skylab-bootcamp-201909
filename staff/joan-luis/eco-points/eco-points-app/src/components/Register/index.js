@@ -1,10 +1,10 @@
 import React from 'react'
-//import './index.sass'
+import './index.css'
 import Feedback from '../Feedback'
 import {Link} from 'react-router-dom'
 
 export default function({ onRegister, onBack, error }) {
-    return <section className="view register _hide">
+    return <section className="view-register">
         <form onSubmit={function (event) {
             event.preventDefault()
             
@@ -16,10 +16,11 @@ export default function({ onRegister, onBack, error }) {
             <input className="register__field" type="text" name="name" placeholder="name" />
             <input className="register__field" type="text" name="surname" placeholder="surname" />
             <input className="register__field" type="email" name="email" placeholder="e-mail" />
-            <input className="register__field" type="username" name="username" placeholder="username" />
+            <input className="register__field" type="text" name="username" placeholder="username" />
             <input className="register__field" type="password" name="password" placeholder="password" />
-            <button className="register__submit"></button>
-            <Link to='/Login'>Go to Login</Link>
+            <input className="register__submit" type="submit"></input>
+            <Link className="register__link" to='/Login'>Go to Login</Link>
+            <Link className="register__link" to='/'>Go to Map</Link>
         </form>
 
         {error && <Feedback message={error} />}

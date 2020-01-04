@@ -1,7 +1,15 @@
+body {
+  margin: 0;
+  padding: 0;
+  top: 0;
+  
+  font-family: sans-serif;
+  height: 100vh;
+}
 .leaflet-container {
     height: 500px;
     width: 100%;
-  }
+}
 
 .map-leaflet{
 
