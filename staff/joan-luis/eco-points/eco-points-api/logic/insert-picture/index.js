@@ -24,11 +24,6 @@ module.exports = function (id, file, filename) {
     
     
     return (async () => {
-        //const user = await User.findById(id)
-        //if (!user) throw new Error(` with id ${id} not found`)
-
-        //const wish = user.wishes.find(wish => wish.id === wishId)        
-        //if (!wish) throw new NotFoundError(`user does not have task with id ${wishId}`)
         
         const dir = `./data/images/${id}`
         if (!fs.existsSync(dir)){

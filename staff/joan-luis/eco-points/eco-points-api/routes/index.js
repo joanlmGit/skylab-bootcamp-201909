@@ -3,5 +3,4 @@ module.exports = {
     garbage: require('./garbage'),
     //action: require ('./action')
     image: require('./image')
-
 }

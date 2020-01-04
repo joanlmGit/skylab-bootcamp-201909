@@ -10,11 +10,11 @@ const jsonBodyParser = bodyParser.json()
 
 const router = Router()
 
-router.post('/garbage', jsonBodyParser, (req, res) => {
-    const { body: { latitude, longitude, name } } = req
+router.post('/', jsonBodyParser, (req, res) => {
+    const { body: { location, name, status } } = req
 
     try {
-        createPoint(latitude, longitude, name)
+        createPoint(location, name, status)
             //.then()=> res.status(201).end())                                    //=> insertPicture(idpoint, file, filename ))
             .then((id) => res.status(201).json({id}))
             .catch(error => {
