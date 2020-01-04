@@ -1,0 +1,44 @@
+.landing__menu{
+    background-color:black;
+    margin: 0em;
+    padding: 0em;
+}
+
+.landing-title{
+    list-style-type: none;
+    top: 0;
+    text-align: center;
+    color: white;
+}
+
+.landing__nav {
+    display: inline;
+    text-align: center; 
+    align-items: center;
+    font-size: 1rem;   
+}
+
+
+.landing__button{
+    margin: 0 10px 0 0;
+    text-align: center;
+    align-items: center;
+    color: #74b174;
+}
+
+@media (max-width: 700px){
+    .landing-title{
+        list-style-type: none;
+        top: 0;
+        text-align: center;
+        color: white;
+        font-size: 1.5rem;  
+    }
+    
+    
+    .landing__button{
+        font-size: 0.7rem;
+        margin: 0 10px 0 0;
+        text-align: center;
+    }
+}
