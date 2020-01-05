@@ -16,7 +16,7 @@ export default function ({ error }) {
     function handleSetData(event, error) {
         event.preventDefault()
         
-        const { target: { username: { value: username }, file: { files: [image] } } } = event
+        const { target: { username: { value: username }, image: { files: [image] } } } = event
 
 
         navigator.geolocation.getCurrentPosition(position => {
@@ -55,7 +55,7 @@ export default function ({ error }) {
             <form className="addGarbage" encType="multipart/form-data" onSubmit={handleSetData}>
                 
                 <input type="text" name="username" placeholder="enter your name"></input>
-                <input type="file" name="file" accept="image/*" placeholder="select file"></input>
+                <input type="file" name="image" accept="image/*" placeholder="select file"></input>
                 <input className="save_garbage" type="submit" value="add garbage"></input>
                 <Link className="landing__link" to='/register'>Go to Regiser</Link>
                 <Link className="landing__link" to='/'>Go to Map</Link>

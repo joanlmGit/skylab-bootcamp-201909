@@ -14,9 +14,12 @@ router.post('/', jsonBodyParser, (req, res) => {
     const { body: { location, name, status } } = req
 
     try {
+        debugger
         createPoint(location, name, status)
-            //.then()=> res.status(201).end())                                    //=> insertPicture(idpoint, file, filename ))
-            .then((id) => res.status(201).json({id}))
+            //.then()=> res.status(201).end())  //=> insertPicture(idpoint, file, filename ))
+            .then((id) => {
+                res.status(201)
+                res.json({id:id})})
             .catch(error => {
                 const { message } = error
 

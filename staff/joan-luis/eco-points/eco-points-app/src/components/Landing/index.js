@@ -17,9 +17,9 @@ import './index.css'
 var iconPos = L.icon({ iconUrl: positionIcon, iconSize: [30, 30], iconAnchor: [12.5, 41], popupAnchor: [0, -41] })
 
 function MapLanding({ history }) {
-  const [position, setPosition] = useState([0, 0])
+  const [position, setPosition] = useState([41.265577, 1.974113])
   const [zoom, setZoom] = useState(17)
-  const [haveUsersLocation, setHaveUsersLocation] = useState(false)
+  
   
   
   
@@ -36,7 +36,7 @@ function MapLanding({ history }) {
         (async function (longitude, latitude){
           
           setPosition([latitude, longitude])
-          setHaveUsersLocation(true)
+          
           
         })(longitude, latitude)
 
@@ -54,7 +54,14 @@ function MapLanding({ history }) {
         attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      { haveUsersLocation ? <Marker position={position} icon={iconPos}></Marker> : '' }
+      { <Marker position={position} icon={iconPos}>
+        <Popup>
+          <section className = 'user-notification'>
+            <p className = 'user-notification_text'>testing 1</p>
+            <p className = 'user-notification_text'>testing dos</p>
+          </section>
+        </Popup>
+      </Marker>}
     
     </Map>
 }

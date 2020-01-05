@@ -9,7 +9,7 @@ export default function (idpointGarbage,image){
     return (async () => {
 
 
-        const response = await fetch (`${URL_APP_API}/data/images/{idpointGarbage}`, {
+        const response = await fetch (`${URL_APP_API}/data/images/${idpointGarbage}`, {
             method: 'POST',
             body: FormData
         })
