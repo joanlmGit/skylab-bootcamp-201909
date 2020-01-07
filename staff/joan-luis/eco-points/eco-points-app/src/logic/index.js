@@ -3,7 +3,7 @@ import authenticateUser from './autenticate-user'
 import registerUser from './register-user'
 import retrieveUser from './retrieve-user'
 import createGarbage from './create-garbage'
-import listImages from './list-pictures'
+import listPictures from './list-pictures'
 import modifyPoint from './clean-garbage'
 
 
@@ -22,6 +22,6 @@ export default {
     authenticateUser,
     retrieveUser,
     createGarbage,
-    listImages,
+    listPictures,
     modifyPoint
 }

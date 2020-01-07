@@ -17,7 +17,7 @@ import './index.css'
 var iconPos = L.icon({ iconUrl: positionIcon, iconSize: [30, 30], iconAnchor: [12.5, 41], popupAnchor: [0, -41] })
 
 function MapLanding({ history }) {
-  const [position, setPosition] = useState([41.265577, 1.974113])
+  const [position, setPosition] = useState([41.265473, 1.974424])
   const [zoom, setZoom] = useState(17)
   
   

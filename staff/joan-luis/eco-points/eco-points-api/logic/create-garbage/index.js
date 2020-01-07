@@ -14,7 +14,5 @@ module.exports=function (location, name, status){
         const pointgarbege = await Garbage.create ({location, name, status})
         
          return pointgarbege.id 
-
-        
     })()
 }
