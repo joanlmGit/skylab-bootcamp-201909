@@ -13,29 +13,16 @@ module.exports =  new Schema({
         ref: 'garbage'
     },
     
-    
-    image: {
-        type: Array,
-        required: true
-    },
 
     description: {
         type: String,
         required: true
     },
 
-    status: {
-        type: Boolean,
-        required: true,
-       
-        
-    },
     date: {
         type: Date,
         required: true,
         default: Date.now
     },
-    lastAccess: {
-        type: Date
-    }
+    
 })

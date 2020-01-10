@@ -1,17 +1,18 @@
 
-const URL_APP_API= process.env.REACT_APP_API_URL
+const   API_URL= process.env.REACT_APP_API_URL
 
-export default function (idpointGarbage,image){
+export default function (id,image){
     let fs=new FormData()
     fs.append('file',image)
-
+   
 
     return (async () => {
 
 
-        const response = await fetch (`${URL_APP_API}/data/images/${idpointGarbage}`, {
+        const response = await fetch (`${API_URL}/image/${id}`, {
             method: 'POST',
-            body: FormData
+            //headers: { 'content-type': 'application/json' },
+            body: fs
         })
 
         if (response.status !==200){

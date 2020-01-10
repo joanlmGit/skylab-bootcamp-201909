@@ -46,7 +46,7 @@ router.get('/garbages',jsonBodyParser, (req, res)=> {
 
 router.post('/', jsonBodyParser, (req, res) => {
     const { body: { location, name, status } } = req 
-    
+    debugger
     
     try {
         createPoint(location, name, status)

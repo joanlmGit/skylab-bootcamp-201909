@@ -37,11 +37,12 @@ export default function ({ error }) {
 
 
         async function handleCreateGarbage(latitude, longitude, username, image) {
-
+            
             try {
                 let status = false
                 const res = await Logic.createGarbage(latitude, longitude, username, status)
                 const idGarbagePoint = res.id
+                
                 await uploadImage(idGarbagePoint, image)
                 //pasamos los datos para para renderizar el mapa con el punto i posiblemente la imagen para poner popup
             } catch (error) {

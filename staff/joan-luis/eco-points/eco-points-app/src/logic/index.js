@@ -4,7 +4,7 @@ import registerUser from './register-user'
 import retrieveUser from './retrieve-user'
 import createGarbage from './create-garbage'
 import listPictures from './list-pictures'
-import modifyPoint from './clean-garbage'
+import cleangarbage from './clean-garbage'
 
 
 
@@ -23,5 +23,5 @@ export default {
     retrieveUser,
     createGarbage,
     listPictures,
-    modifyPoint
+    cleangarbage
 }

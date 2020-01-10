@@ -8,11 +8,11 @@ const Busboy = require ('busboy')
 
 const router = Router()
 
-router.post('/save/:id', (req, res) => {
-    const { params: { id } } = req
+router.post('/image/:idpointGarbage', (req, res) => {
+    const { params: { idpointGarbage } } = req
     const busboy = new Busboy({ headers: req.headers })
     busboy.on('file', async (fieldname, file, filename, encoding, mimetype) => {
-        filename = id
+        filename = idpointGarbage
         await insertPicture(id, file, filename)
     })
     busboy.on('finish', () => {
