@@ -19,16 +19,16 @@ The user can enter the point using the menu option addgarbage. This option will 
 ![](eco-points-docs/images/UseCases.png)
 
 ### Activity Diagram
-![](eco-points-docs/images/Activity-ECO-POINTS.PNG)
+![](eco-points-docs/images/Activity-Diagram.png)
 
 ## Tecnical Dscription
 
 ### Blocks
 ![](eco-points-docs/images/Block-Diagram.png)
 ### Components
-
+![](eco-points-docs/images/componets.png)
 ### Data Model
-
+![](eco-points-docs/images/Model-Data.png)
 ### Code Coverage
 
 ### Built with
@@ -48,17 +48,6 @@ The user can enter the point using the menu option addgarbage. This option will 
 
 _Explica como ejecutar las pruebas automatizadas para este sistema_
 
-### Analice las pruebas end-to-end 🔩
-
-_Explica que verifican estas pruebas y por qué_
-
-```
-Da un ejemplo
-```
-
-
-
-
 
 ## Versionado 📌
 v.0
@@ -66,18 +55,13 @@ v.0
 
 ## Autores ✒️
 
-
 * **Joan Luis Morales** - *Trabajo Inicial* - [git Joan](https://github.com/joan)
-
-
- 
-
 
 ## Expresiones de Gratitud 🎁
 
-* Teach Team, specialy Jorge
+* Teach Team, 
 * 
-* Martín, Aitor, Nacho,  Xavi Sevilla 🤓
+* Martín, Aitor, Nacho,  Xavi Sevilla, Isidro, Adri H, Jose y Oscar Rodriguez  🤓
 * 
 
 
