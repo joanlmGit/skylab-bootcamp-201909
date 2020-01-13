@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
 import Feedback from '../Feedback'
 import { ContentError } from 'eco-points-utils'
 import {Link} from 'react-router-dom'

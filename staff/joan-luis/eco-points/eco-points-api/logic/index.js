@@ -5,7 +5,7 @@ module.exports = {
     createPoint: require('./create-garbage'),
     retrieveGarbage: require('./retrieve-garbage'),
     retrieveAllGarbage: require ('./retrieve-all-garbage'),
-    //listPicture: require('./list-picture'),
+    listPictures: require('./list-pictures'),
     //modifyPoint: require('./modify-point'),
     insertPicture: require('./insert-picture') 
 }
