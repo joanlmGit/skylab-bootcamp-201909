@@ -6,6 +6,7 @@ import Menu from '../Menu'
 import Register from '../Register'
 import Login from '../Login'
 import Addgarbage from '../AddGarbage'
+import Showpictures from '../Galery'
 import { Route, withRouter, Redirect } from 'react-router-dom'
 import Logic from '../../logic' 
 
@@ -46,6 +47,8 @@ export default withRouter(function ({ history }) {
         }
     }
 
+    
+
 
 
     const { token } = sessionStorage 
@@ -56,6 +59,7 @@ export default withRouter(function ({ history }) {
         <Route path="/Register" render={() => <Register onRegister={handleRegister}  /> } />
         <Route path="/login" render={() => <Login onLogin={handleLogin}  />} />
         <Route path="/AddGarbage" render={() => <Addgarbage/>}/>
+        <Route path="/Galery" render= {()=> <Showpictures />}/>
     </>
 })
 

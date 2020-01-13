@@ -29,8 +29,6 @@ export default function (longitude, latitude, name, status) {
 	})()
 }
 
-//const denver = { type: 'Point', coordinates: [-104.9903, 39.7392] }
-//la composicion del schema de location se debe gestionas en api
 
 
 

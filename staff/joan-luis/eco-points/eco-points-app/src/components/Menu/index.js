@@ -9,7 +9,7 @@ export default function(){
                 <a className = 'landing__button' href = '/#/login'>Log In</a>
                 <a className = 'landing__button' href = '/#/Addgarbage'> Add Garbage Point</a>
                 <a className = 'landing__button' href = '/#/Cleangarbage'>Clean Garbage Point</a>
-                <a className = 'landing__button' href = '/#/'>Galery</a>
+                <a className = 'landing__button' href = '/#/Galery'>Galery</a>
             </nav>
 
         </header>
