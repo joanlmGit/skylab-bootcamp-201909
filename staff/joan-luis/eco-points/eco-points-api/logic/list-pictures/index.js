@@ -8,7 +8,7 @@ const path = require('path')
 * retrieve all image.
 * 
 * 
-*
+*    
 * @returns {Promise}   
 */
 

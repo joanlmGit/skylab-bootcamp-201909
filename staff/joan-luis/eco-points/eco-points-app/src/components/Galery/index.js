@@ -1,33 +1,34 @@
-import React, {useEffect} from 'react'
+/* eslint-disable no-unused-expressions */
+import React, {useEffect, useContext} from 'react'
 import {Link} from 'react-router-dom'
-import Logic from '../../logic'
+import logic from '../../logic'
+import Context from '../Context'
 import './index.css'
-const myPicture=require ('./fisura-silfra-4.jpg')
 
 
 
-function Galery(pictures){
 
-    
-    useEffect( ()=>{
+function Galery(){
+
+    const {pictures}=useContext(Context)
+    useEffect(()=>{
         
-        (async () =>{
+        return (async () =>{
             try{
-                pictures= await Logic.listPictures
+              pictures= await logic.listPictures()
             }catch(error){
                 console.log(error.message)
             }
-
+            
         })()
     })
 
     return <>
-    <div className="view-galery">
+     <div className="view-galery">
         <ul className="galery__container">
-         {   pictures.forEach( item=> {  
-                <li className="container__item"><img className="item-image" src = {item} /></li>
-            })} 
-            
+         {pictures.forEach((item)=> {  
+                {<li className="container__item"><img className="item-image" src= {item}/></li>}
+        })} 
         </ul>
         <Link className="galery-link" to='/'>Go to Map</Link>
     </div>
