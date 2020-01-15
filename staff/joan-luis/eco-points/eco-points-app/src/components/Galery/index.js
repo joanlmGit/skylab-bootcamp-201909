@@ -24,10 +24,10 @@ function Galery(pictures){
     return <>
     <div className="view-galery">
         <ul className="galery__container">
-         {/*    {pictures.forEch((item,)=> {  //
-                //<li className="container__item"><img className="item-image" src = {item} /></li>
-            })} */}
-            <li className="container__item"><img className="item-image" src={myPicture}/></li>
+         {   pictures.forEach( item=> {  
+                <li className="container__item"><img className="item-image" src = {item} /></li>
+            })} 
+            
         </ul>
         <Link className="galery-link" to='/'>Go to Map</Link>
     </div>

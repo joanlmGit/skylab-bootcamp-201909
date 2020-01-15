@@ -7,7 +7,7 @@ const { argv: [, , port], env: { PORT = port || 8080, DB_URL } } = process
 const cors = require('cors')
 const { database } = require('eco-points-data')
 
-const { users, garbage, image } = require('./routes')
+const { users, garbage, image, pictures } = require('./routes')
 
 const api = express()
 
@@ -16,6 +16,7 @@ api.use(cors())
 api.use('/users', users)
 api.use('/garbage', garbage)
 api.use('/image', image)
+api.use('/pictures', pictures)
 
  
 database

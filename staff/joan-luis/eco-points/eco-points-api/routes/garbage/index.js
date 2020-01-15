@@ -4,7 +4,7 @@ const {createPoint, retrieveGarbage, retrieveAllGarbage} = require('../../logic'
 const bodyParser = require('body-parser')
 const jsonBodyParser = bodyParser.json()
 
-//const {insertPicture} = require('insert-picture')
+
 
 
 

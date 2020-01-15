@@ -5,7 +5,7 @@ const path = require('path')
 
 
 /**
-* Saves  image.
+* retrieve all image.
 * 
 * 
 *
@@ -15,24 +15,26 @@ const path = require('path')
 
 module.exports = function () {
     let pictures = []
-    const allGarbage = Logic.retrieveAllGarbage()
-    let id
+
+    
     return (async () => {
-        allGarbage.forEach(garbageId => {
-            id = garbageId._id.toString()
-            const dir = `./data/images/${id}/`
-            if (!fs.existsSync(dir)) {
-                fs.readdir(dir, (error, file) => {
+        const allGarbage = await Logic.retrieveAllGarbage
+        try {
+            allGarbage.forEach(allGarbage => {
+                id = allGarbage._id.toString()
+                path = `./data/images/${id}/`
+
+                fs.readdir(path, (error, file) => {
+                    if (error) console.log(error.message)
                     file.forEach(file => {
                         pictures.push(file)
                     })
 
                 })
-            }
+            })
+            return  pictures
+        } catch (error) {
 
-        })
-
-
-        return pictures
+        }
     })()
 }

@@ -9,14 +9,14 @@ const jsonBodyParser = bodyParser.json()
 const router = Router()
 
 
-router.get('/pictures',jsonBodyParser, (req, res)=> {
-    //let garbageId =req.params.garbageId //ha de solicitar todos los puntos
+router.get('/',jsonBodyParser, (req, res)=> {
+ 
     try{
         listPictures()
-            .then((pictures)=> res.status(200).json(pictures))
+            .then((pictures)=> res.status(200).json("exit load pictures").send(pictures))
             .catch(error => {
                 const { message } = error
-                res.status(500).json({ message })
+                res.status(500).json({ message})
             })
 
     }catch({message}) {
@@ -24,3 +24,5 @@ router.get('/pictures',jsonBodyParser, (req, res)=> {
     }
     
 })
+
+module.exports= router

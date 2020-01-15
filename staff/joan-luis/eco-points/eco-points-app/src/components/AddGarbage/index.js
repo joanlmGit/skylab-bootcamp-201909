@@ -58,7 +58,7 @@ export default function ({ error }) {
                 <input type="text" name="username" placeholder="enter your name"></input>
                 <input type="file" name="image" accept="image/*" placeholder="select file"></input>
                 <input className="save_garbage" type="submit" value="add garbage"></input>
-                <Link className="landing__link" to='/register'>Go to Regiser</Link>
+                <Link className="landing__link" to='/register'>Go to Register</Link>
                 <Link className="landing__link" to='/'>Go to Map</Link>
 
             </form>
