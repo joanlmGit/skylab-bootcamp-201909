@@ -10,10 +10,10 @@ const router = Router()
 
 
 router.get('/',jsonBodyParser, (req, res)=> {
- 
+    debugger
     try{
         listPictures()
-            .then((pictures)=> res.status(200).json("load successful").send(pictures))
+            .then((pictures)=> res.status(200).send(pictures))
             .catch(error => {
                 const { message } = error
                 res.status(500).json({ message})
@@ -21,8 +21,7 @@ router.get('/',jsonBodyParser, (req, res)=> {
 
     }catch({message}) {
         res.status(400).json({message})
-    }
-    
+    } 
 })
 
 module.exports= router

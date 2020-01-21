@@ -3,12 +3,13 @@ import React, {useEffect, useContext} from 'react'
 import {Link} from 'react-router-dom'
 import logic from '../../logic'
 import Context from '../Context'
+import Feedback from '../Feedback'
 import './index.css'
 
 
 
 
-function Galery(){
+function Galery(error){
 
     const {pictures}=useContext(Context)
     useEffect(()=>{
@@ -16,6 +17,7 @@ function Galery(){
         return (async () =>{
             try{
               pictures= await logic.listPictures()
+              
             }catch(error){
                 console.log(error.message)
             }
@@ -24,14 +26,16 @@ function Galery(){
     })
 
     return <>
+    {picture!=null?  
      <div className="view-galery">
         <ul className="galery__container">
-         {pictures.forEach((item)=> {  
-                {<li className="container__item"><img className="item-image" src= {item}/></li>}
-        })} 
+            {pictures.map((item)=> {  
+                {<li className="container__item"><img className="item-image" src= {`${item}`}/></li>}
+            })} 
         </ul>
         <Link className="galery-link" to='/'>Go to Map</Link>
-    </div>
+    </div> :  <Feedback message={error} />
+    }
     </>
 
 }

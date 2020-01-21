@@ -13,7 +13,7 @@ module.exports=function (){
             if (error) throw error
             return garbage
         })
-        if (!pointgarbege) throw Error(`Location garbage with id ${id} dows not exist`)
+        if (!pointgarbege) throw Error(`The location garbage with id ${garbageId}  not exist`)
          return pointgarbege
 
         

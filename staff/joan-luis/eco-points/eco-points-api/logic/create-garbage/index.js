@@ -1,6 +1,12 @@
 const {validate, errors: {ConflictError}}= require('eco-points-utils')
 const {models: { Garbage } } = require('eco-points-data')
 
+
+/**
+* @param {ObjectId} location geolocation point garbage
+* @param {Stream} name user that add geolocation 
+* @param {boolean} status this param is false, mean is a dirty point, true is a clean point 
+ */
 module.exports=function (location, name, status){
 
     //validate.is-instance-of(location,"object")

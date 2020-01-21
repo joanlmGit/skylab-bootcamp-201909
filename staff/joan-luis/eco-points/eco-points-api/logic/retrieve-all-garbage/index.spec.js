@@ -9,21 +9,27 @@ const retreaveAllGarbage = require('.')
 describe('logic - retrieve all garbage points', () => {
     before(() => database.connect(TEST_DB_URL))
 
-    let longitude, latitude, status, location, name
+    let point, longitude, latitude, status, location, name
 
     beforeEach(async() => {
+        longitude= Math.random() *(90-0)+0
+        latitude = Math.random() *(180-0)+0
+        name = "Antonio"
+        status= false
+        location= {"type": "Point","coordinates": [latitude,longitude]}
         
-        const allGarbage = await retrieveAllGarbage(location,name, status)
+        await Garbage.deleteMany()
 
-        return Garbage.deleteMany()
+        point = await createGarbage(location,name, status)
+
     })
 
     it('should succeed on correct reatrive garbage', async () => {
+        const allGarbage = await retrieveAllGarbage(location,name, status)
+
+        expect(allGarbage).to.be.defined
+
         
-
-        expect(allGarbage).to.be.undefined
-
-        // TODO more expects
     })
 
     // TODO other cases

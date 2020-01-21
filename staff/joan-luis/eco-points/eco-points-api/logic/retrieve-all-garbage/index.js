@@ -14,7 +14,7 @@ module.exports=function (){
             return garbages
         })
         if (!allGarbege) throw Error(`Location garbage not exist`)
-         return allGarbege
+         return  await allGarbege
 
         
     })()

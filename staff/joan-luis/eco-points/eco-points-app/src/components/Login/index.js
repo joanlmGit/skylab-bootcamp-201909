@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import './index.css'
 import Feedback from '../Feedback'
 
-export default function({ onLogin, onBack, error }) {
+export default function({ onLogin,  error }) {
     return <section className="view-login">
         <form onSubmit={function (event) {
             event.preventDefault()
