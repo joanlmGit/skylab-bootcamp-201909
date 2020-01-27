@@ -1,0 +1,21 @@
+body {
+  margin: 0;
+  padding: 0;
+  top: 0;
+  
+  font-family: sans-serif;
+  height: 100vh;
+}
+.leaflet-container {
+    height: 900px;
+    width: 100%;
+}
+
+.map-leaflet{
+
+  height: 90%;
+  width: 100%;
+  top: 0;
+  position: absolute;
+  background: #333;
+}

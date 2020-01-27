@@ -3,7 +3,14 @@ const { validate, errors: { ConflictError } } = require('eco-points-utils')
 // const { env: { REACT_APP_API_URL: API_URL } } = process
 const API_URL = process.env.REACT_APP_API_URL
 
-
+/**
+ * Register user
+ * @param {string} name 
+ * @param {string} surname 
+ * @param {string} email 
+ * @param {string} username 
+ * @param {string} password 
+ */
 export default function (name, surname, email, username, password) {
     validate.string(name)
     validate.string.notVoid('name', name)

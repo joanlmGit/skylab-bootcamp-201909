@@ -3,6 +3,10 @@ const { validate, errors: { CredentialsError, NotFoundError } } = require('eco-p
 // const { env: { REACT_APP_API_URL: API_URL } } = process
 const API_URL = process.env.REACT_APP_API_URL
 
+
+/**
+ * @param{string}
+ */
 module.exports = function (token) {
     validate.string(token)
     validate.string.notVoid('token', token)

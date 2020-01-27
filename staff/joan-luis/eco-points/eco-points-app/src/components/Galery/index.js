@@ -26,7 +26,7 @@ function Galery(error){
     })
 
     return <>
-    {picture!=null?  
+    {pictures!=null?  
      <div className="view-galery">
         <ul className="galery__container">
             {pictures.map((item)=> {  

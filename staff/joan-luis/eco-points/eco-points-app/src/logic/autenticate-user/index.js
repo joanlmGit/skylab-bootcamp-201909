@@ -3,6 +3,12 @@ const { validate, errors: { CredentialsError } } = require('eco-points-utils')
 // const { env: { REACT_APP_API_URL: API_URL } } = process
 const API_URL = process.env.REACT_APP_API_URL
 
+
+/**
+ * allows user access once registered
+ * @param{string}username nickname variable used to authenticate user
+ * @param{string}password alphanumeric values ​​to authenticate user
+ */
 module.exports = function (username, password) {
     validate.string(username)
     validate.string.notVoid('username', username)

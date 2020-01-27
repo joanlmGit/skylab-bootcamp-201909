@@ -13,7 +13,7 @@ export default function ({ error }) {
 
     
 
-    function handleSetData(event, error) {
+    function handleSetData(event) {
         event.preventDefault()
         
         const { target: { username: { value: username }, image: { files: [image] } } } = event

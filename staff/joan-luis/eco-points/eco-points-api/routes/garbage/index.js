@@ -27,11 +27,11 @@ router.get('/one/:garbageId',jsonBodyParser, (req, res)=> {
 })
 
 
-router.get('/garbages',jsonBodyParser, (req, res)=> {
+router.get('/',jsonBodyParser, (req, res)=> {
     //let garbageId =req.params.garbageId //ha de solicitar todos los puntos
     try{
         retrieveAllGarbage()
-            .then((garbages)=> res.status(200).json(garbages))
+            .then((garbages)=> res.status(200).send(garbages))
             .catch(error => {
                 const { message } = error
                 res.status(500).json({ message })
@@ -46,7 +46,7 @@ router.get('/garbages',jsonBodyParser, (req, res)=> {
 
 router.post('/', jsonBodyParser, (req, res) => {
     const { body: { location, name, status } } = req 
-    debugger
+    
     
     try {
         createPoint(location, name, status)
