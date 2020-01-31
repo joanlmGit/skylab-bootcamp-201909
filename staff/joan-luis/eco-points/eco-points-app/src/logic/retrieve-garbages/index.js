@@ -6,7 +6,7 @@ const API_URL = process.env.REACT_APP_API_URL
  * Call all points garbages
  */
 module.exports = function() {
-
+    debugger
     return (async ()=> {
         const res = await call (`${API_URL}/garbage`, {
             method: 'GET',

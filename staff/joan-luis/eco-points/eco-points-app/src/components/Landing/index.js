@@ -2,22 +2,22 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 import { withRouter } from 'react-router-dom'
-import Context from '../../components/Context'
+import Logic from '../../logic'
 import L from 'leaflet'
-import retrieveGarbages from '../../logic/retrieve-garbages'
 import positionIcon from '../../images/mark-init-position.png'
 import './index.css'
 
 
 
-const iconPos = L.icon({ iconUrl: positionIcon, iconSize: [30, 30], iconAnchor: [12.5, 41], popupAnchor: [0, -41] })
 
-function MapLanding({ history }) {
+
+const iconPosUser = L.icon({ iconUrl: positionIcon, iconSize: [30, 30], iconAnchor: [12.5, 41], popupAnchor: [0, -41] })
+
+function MapLanding() {
   const [position, setPosition] = useState([41.265473, 1.974424])
-  const [zoom, setZoom] = useState(17)
-
-
-
+  const [zoom, setZoom] = useState(10)
+  const [isUserLocate, setIsUserLocate] = useState(false)
+  
 
 
   useEffect(() => {
@@ -32,39 +32,40 @@ function MapLanding({ history }) {
         (async function (longitude, latitude) {
 
           setPosition([latitude, longitude])
-
+          setIsUserLocate(true)
 
         })(longitude, latitude)
 
       }, error => console.log(error.message))
     }, 3000)
     return () => clearInterval(interval)
-  })
+    
+    
+  },[])
   
-
-
+  
+  
   
   return <Map className="map" center={position} zoom={zoom}>
     <TileLayer
-      attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+      attribution='&amp;copy <a href = "http://osm.org/copyright">OpenStreetMap</a> contributors'
       url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
     />
-    
-    {(allGarbages) => {
-      allGarbages.forEach((point => {
+    {isUserLocate ? <Marker position={position} icon={iconPosUser}><Popup>
+      <section className='garbage-popup'>
+        <p className='garbage-owner'>Add point Garbage</p>
+      </section>
+    </Popup></Marker> : ''}
 
-        <Marker position={point.coordinates} icon={iconPos}>
-          <Popup>
-            <section className='garbage-popup'>
-              <p className='garbage-owner'>added point in Map</p>
-            </section>
-          </Popup>
-        </Marker>
-      }))
-
-    }
-    }
+    {pointsGarbage && pointsGarbage.length && pointsGarbage.map(point => <Marker key={point._id} position={[point.coodinates[1], point.coodinates[0]]} icon={iconPosUser}>
+      <Popup>
+        {point.name && <section className='garbage-popup'>
+          <p className='garbage-owner'>{point.name}</p>
+        </section>}
+      </Popup>
+    </Marker>)}
 
   </Map>
 }
+
 export default withRouter(MapLanding)

@@ -5,6 +5,7 @@ import retrieveUser from './retrieve-user'
 import createGarbage from './create-garbage'
 import listPictures from './list-pictures'
 import cleangarbage from './clean-garbage'
+import retrieveAllGarbage from './retrieve-garbages'
 
 
 
@@ -23,5 +24,6 @@ export default {
     retrieveUser,
     createGarbage,
     listPictures,
-    cleangarbage
+    cleangarbage,
+    retrieveAllGarbage
 }
