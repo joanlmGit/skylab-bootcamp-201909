@@ -14,7 +14,7 @@ import Logic from '../../logic'
 
 export default withRouter(function ({ history }) {
    
-     {pointsGarbage}=useContext(Context)  
+     
     const [name, setName] = useState()
     
     useEffect(() => {
@@ -46,7 +46,7 @@ export default withRouter(function ({ history }) {
             console.error(error)
         }
     }
-    async function handleLoadGarbage(){
+    /* async function handleLoadGarbage(){
          
         try{
             
@@ -55,7 +55,7 @@ export default withRouter(function ({ history }) {
         }catch(error){
             console.log(error)
         }
-    }
+    } */
 
     
 
@@ -65,7 +65,7 @@ export default withRouter(function ({ history }) {
  
     return <>
         <Route exact path="/" render={() =>  <Menu/>} />
-        <Route exact path="/" render={() =>  <Landing onLoadPoinst={handleLoadGarbage}/>} />
+        <Route exact path="/" render={() =>  <Landing />} />
         <Route path="/Register" render={() => <Register onRegister={handleRegister} /> } />
         <Route path="/login" render={() => <Login onLogin={handleLogin}  />} />
         <Route path="/AddGarbage" render={() => <Addgarbage/>}/>

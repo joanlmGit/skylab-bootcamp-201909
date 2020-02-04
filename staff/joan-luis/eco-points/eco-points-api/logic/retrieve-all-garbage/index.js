@@ -1,17 +1,27 @@
 
-const {validate, errors: {ConflictError}}= require('eco-points-utils')
+const {validate, errors: {NotFoundError}}= require('eco-points-utils')
 const {models: { Garbage } } = require('eco-points-data')
 
 module.exports=function (){
 
+    
 
     return (async ()=> {
         
-        const allGarbege = await Garbage.find ((error, garbages)=>{
-            if (error) throw error
-            return garbages
+        const allGarbege = await Garbage.find ({"__v":0}).lean()
+        if (!allGarbege) throw new NotFoundError(`Location garbage not exist`)
+         
+        allGarbege.forEach(point=>{
+            point.id=point._id
+            delete point._id
+            point.locations=point.location
+            delete point.location
+            point.names=point.name
+            delete point.name
+            delete point.status
+            delete point.__v
         })
-        if (!allGarbege) throw Error(`Location garbage not exist`)
-         return  await JSON.stringify(allGarbege)
+        
+        return  await JSON.stringify(allGarbege)
     })()
 }

@@ -1,9 +1,10 @@
 /* eslint-disable */
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState, useContext} from 'react'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 import { withRouter } from 'react-router-dom'
 import Logic from '../../logic'
 import L from 'leaflet'
+import Context from '../Context'
 import positionIcon from '../../images/mark-init-position.png'
 import './index.css'
 
@@ -17,12 +18,13 @@ function MapLanding() {
   const [position, setPosition] = useState([41.265473, 1.974424])
   const [zoom, setZoom] = useState(10)
   const [isUserLocate, setIsUserLocate] = useState(false)
+  let pointsGarbage
   
 
 
   useEffect(() => {
     setZoom(17)
-
+    
     const interval = setInterval(() => {
 
       navigator.geolocation.getCurrentPosition(position => {
@@ -39,13 +41,26 @@ function MapLanding() {
       }, error => console.log(error.message))
     }, 3000)
     return () => clearInterval(interval)
+
+
+
+  })
+
+  useEffect(() => {
     
-    
-  },[])
-  
-  
-  
-  
+    async function getAllLocation() {
+      try{
+      pointsGarbage = await Logic.retrieveAllGarbage()
+           
+      }
+      catch (error){
+        console.log(error)
+      }
+    }
+    getAllLocation()
+  }, [])
+
+
   return <Map className="map" center={position} zoom={zoom}>
     <TileLayer
       attribution='&amp;copy <a href = "http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -57,13 +72,14 @@ function MapLanding() {
       </section>
     </Popup></Marker> : ''}
 
-    {pointsGarbage && pointsGarbage.length && pointsGarbage.map(point => <Marker key={point._id} position={[point.coodinates[1], point.coodinates[0]]} icon={iconPosUser}>
+    { pointsGarbage &&  pointsGarbage.map(point => {return <> <Marker key={point.id} position={[point.locations.coodinates[1], point.locations.coodinates[0]]} icon={iconPosUser}>
       <Popup>
         {point.name && <section className='garbage-popup'>
           <p className='garbage-owner'>{point.name}</p>
+          <p className='garbage-owner'>{point.id}</p>
         </section>}
       </Popup>
-    </Marker>)}
+    </Marker></>})}
 
   </Map>
 }
