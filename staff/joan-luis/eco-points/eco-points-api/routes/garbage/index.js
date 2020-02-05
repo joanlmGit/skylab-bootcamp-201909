@@ -33,7 +33,7 @@ router.get('/',jsonBodyParser, (req, res)=> {
     try{
         retrieveAllGarbage()
             .then((garbages)=> res.status(200).send(garbages))
-            .then(()=> console.log("Exit sent to all data garbage"))
+            .then(()=> console.log("Successful to sent all data garbage"))
             .catch(error => {
                 const { message } = error
                 res.status(500).json({ message })

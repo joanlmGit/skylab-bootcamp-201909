@@ -6,6 +6,7 @@ import Logic from '../../logic'
 import L from 'leaflet'
 import Context from '../Context'
 import positionIcon from '../../images/mark-init-position.png'
+import garbageIcon from '../../images/basura.png'
 import './index.css'
 
 
@@ -13,12 +14,13 @@ import './index.css'
 
 
 const iconPosUser = L.icon({ iconUrl: positionIcon, iconSize: [30, 30], iconAnchor: [12.5, 41], popupAnchor: [0, -41] })
+const iconGarbage = L.icon({ iconUrl: garbageIcon, iconSize: [30, 30], iconAnchor: [12.5, 41], popupAnchor: [0, -41] })
 
 function MapLanding() {
   const [position, setPosition] = useState([41.265473, 1.974424])
   const [zoom, setZoom] = useState(10)
   const [isUserLocate, setIsUserLocate] = useState(false)
-  let pointsGarbage
+  let [pointsGarbage, setPointsGarbage]=useState()
   
 
 
@@ -48,16 +50,17 @@ function MapLanding() {
 
   useEffect(() => {
     
-    async function getAllLocation() {
+    (async  ()=>{
       try{
-      pointsGarbage = await Logic.retrieveAllGarbage()
-           
+        debugger
+        pointsGarbage = await Logic.retrieveAllGarbage()
+        setPointsGarbage(pointsGarbage)
       }
       catch (error){
         console.log(error)
       }
-    }
-    getAllLocation()
+    })(pointsGarbage)
+    
   }, [])
 
 
@@ -72,10 +75,10 @@ function MapLanding() {
       </section>
     </Popup></Marker> : ''}
 
-    { pointsGarbage &&  pointsGarbage.map(point => {return <> <Marker key={point.id} position={[point.locations.coodinates[1], point.locations.coodinates[0]]} icon={iconPosUser}>
+    { pointsGarbage &&  pointsGarbage.map(point => {return <> <Marker key={point.id} position={[point.locations.coordinates[1], point.locations.coordinates[0]]} icon={iconGarbage}>
       <Popup>
-        {point.name && <section className='garbage-popup'>
-          <p className='garbage-owner'>{point.name}</p>
+        {point.names && <section className='garbage-popup'>
+          <p className='garbage-owner'>{point.names}</p>
           <p className='garbage-owner'>{point.id}</p>
         </section>}
       </Popup>

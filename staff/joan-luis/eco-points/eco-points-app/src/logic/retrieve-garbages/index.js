@@ -15,14 +15,10 @@ export default function() {
 
         if (res.status===200){
             const poinst=JSON.parse(res.body)
-            debugger
             return poinst
         }else{
             const {error}=  res.json()
             throw Error(error)
-        }
-        
-
-                 
+        }                 
     })()
 }
