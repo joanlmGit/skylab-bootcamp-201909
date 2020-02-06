@@ -34,7 +34,7 @@ export default function (longitude, latitude, name, status) {
         throw new Error(JSON.parse(res.body).message)
 
 	})()
-}
+} 
 
 
 

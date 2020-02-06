@@ -4,7 +4,7 @@ const {errors: {NotFoundError}} = require('eco-points-utils')
 const {random}=Math
 const {database, models:{Garbage}} = require('eco-points-data')
 require ('../../helpers/jest-matchers')
-
+//El test ha de buscar una localizacion cuando se le pasa id por parametro
 describe('logic - retrieve all locations', ()=>{
     beforeAll(()=> database.connect(TEST_DB_URL))
 
@@ -49,6 +49,10 @@ describe('logic - retrieve all locations', ()=>{
             expect(point.status).ToHaveLengthGreaerThan(0)
 
         })
+    })
+
+    it ('Should point garbage exist', async ()=>{
+        
     })
 
 
