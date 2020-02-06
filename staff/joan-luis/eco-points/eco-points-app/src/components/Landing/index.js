@@ -4,7 +4,6 @@ import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 import { withRouter } from 'react-router-dom'
 import Logic from '../../logic'
 import L from 'leaflet'
-import Context from '../Context'
 import positionIcon from '../../images/mark-init-position.png'
 import garbageIcon from '../../images/basura.png'
 import './index.css'
@@ -22,6 +21,11 @@ function MapLanding() {
   const [isUserLocate, setIsUserLocate] = useState(false)
   let [pointsGarbage, setPointsGarbage]=useState()
   
+  const options = {
+    enableHighAccuracy: true,
+    timeout: 2000,
+    maximumAge: 0
+  }
 
 
   useEffect(() => {
@@ -40,7 +44,7 @@ function MapLanding() {
 
         })(longitude, latitude)
 
-      }, error => console.log(error.message))
+      }, error => console.log(error.message), options)
     }, 3000)
     return () => clearInterval(interval)
 

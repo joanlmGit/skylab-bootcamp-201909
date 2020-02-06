@@ -18,12 +18,13 @@ describe('logic - create point', () => {
         status = false
         
         let location ={
-            type:'Point',
-            coordinates:[latitude, longitude]}
+            coordinates:[latitude, longitude],
+            type:'Point'
+        }
 
         await Promise.all([Garbage.deleteMany()])
 
-        const pointgarbage = await Garbage.create({ name, location,status })
+        const pointgarbage = await Garbage.create({ location, name,status })
 
         id = pointgarbage.id
         token = jwt.sign({ sub: id }, TEST_SECRET)
