@@ -46,20 +46,7 @@ export default withRouter(function ({ history }) {
             console.error(error)
         }
     }
-    /* async function handleLoadGarbage(){
-         
-        try{
-            
-            pointsGarbage= await Logic.retrieveAllGarbage()
-            history.push('/')
-        }catch(error){
-            console.log(error)
-        }
-    } */
-
     
-
-
 
     const { token } = sessionStorage 
  

@@ -1,4 +1,7 @@
+import call from '../../utils/call'
+
 const REACT_APP_API_URL = process.env.REACT_APP_API_URL
+
 //retorna les images del back-end del point garbage
 
 
@@ -20,7 +23,7 @@ export default function () {
             throw Error(error)
         }
         
-            const {pictures}= await response.json()
+            const pictures= await response.json()
             return pictures
         
     })()

@@ -16,22 +16,25 @@ const fs = require('fs')
 module.exports = function () {
     let pictures = []
     let objPictures = {}
-
+    
     return (async () => {
-        let allGarbage = await retrieveAllGarbage()
         try {
-            allGarbage.forEach(allGarbage => {
-                id = allGarbage._id.toString(allGarbage)
-                let path = `./data/images/${id}/`
-                let filesPictures = fs.readdirSync(path)
+            let allpoints = await retrieveAllGarbage()
+            let allGarbage = JSON.parse(allpoints)
+            if (allGarbage){
+                allGarbage.forEach((location) => {
+                    id = location.id.toString(allGarbage)
+                    let path = `./data/images/${id}/`
+                    let filesPictures = fs.readdirSync(path)
 
 
-                if (fs.statSync(path)){
-                    objPictures = { "id": id, "file": filesPictures }
-                    pictures.push(objPictures)
-                } 
+                    if (fs.statSync(path)){
+                        objPictures = { "id": id, "file": filesPictures }
+                        pictures.push(objPictures)
+                    } 
 
-            })
+                })
+            }
             return await JSON.stringify(pictures)
         } catch (error) {
             if (error.code === 'ENOENT') {

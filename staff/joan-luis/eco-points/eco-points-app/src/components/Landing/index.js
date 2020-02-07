@@ -56,7 +56,7 @@ function MapLanding() {
     
     (async  ()=>{
       try{
-        debugger
+        
         pointsGarbage = await Logic.retrieveAllGarbage()
         setPointsGarbage(pointsGarbage)
       }

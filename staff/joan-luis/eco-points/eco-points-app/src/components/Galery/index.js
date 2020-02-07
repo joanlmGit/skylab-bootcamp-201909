@@ -10,10 +10,10 @@ import './index.css'
 
 
 function Galery(error){
-
-    const {pictures}=useContext(Context)
+    
+    let {pictures}=useContext(Context)
     useEffect(()=>{
-        
+        debugger
         return (async () =>{
             try{
               pictures= await logic.listPictures()
@@ -26,16 +26,13 @@ function Galery(error){
     })
 
     return <>
-    {pictures!=null?  
+    
      <div className="view-galery">
         <ul className="galery__container">
-            {pictures.map((item)=> {  
-                {<li className="container__item"><img className="item-image" src= {`${item}`}/></li>}
-            })} 
+            {pictures && pictures.map((item)=> { <li className="container__item"><img className="item-image" src= {`${item}`}/></li>})} 
         </ul>
         <Link className="galery-link" to='/'>Go to Map</Link>
-    </div> :  <Feedback message={error} />
-    }
+    </div> 
     </>
 
 }
