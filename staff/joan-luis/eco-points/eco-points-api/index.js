@@ -17,7 +17,7 @@ api.use('/users', users)
 api.use('/garbage', garbage)
 api.use('/image', image)
 api.use('/pictures', pictures)
-api.use(express.static('data/images'))
+api.use(express.static('data'))
 
  
 database
