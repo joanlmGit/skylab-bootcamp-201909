@@ -23,8 +23,9 @@ export default function () {
             throw Error(error)
         }
         
-            const pictures= await response.json()
-            return pictures
+        const pictures= await response.json()
+        return pictures
+            
         
     })()
 }

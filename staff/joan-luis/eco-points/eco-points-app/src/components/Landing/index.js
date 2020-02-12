@@ -53,7 +53,7 @@ function MapLanding() {
   })
 
   useEffect(() => {
-    
+ 
     (async  ()=>{
       try{
         
