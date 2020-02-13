@@ -84,6 +84,7 @@ function MapLanding() {
         {point.names && <section className='garbage-popup'>
           <p className='garbage-owner'>{point.names}</p>
           <p className='garbage-owner'>{point.id}</p>
+          <input className="clean_garbage" type="submit" value="clean"></input>
         </section>}
       </Popup>
     </Marker></>})}

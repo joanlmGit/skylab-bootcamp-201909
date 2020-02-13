@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import './index.css'
 import Feedback from '../Feedback'
+const imageSRC= "/images/cuidado-natura.png"
 
 export default function({ onLogin,  error }) {
     return <section className="view-login">
@@ -12,6 +13,7 @@ export default function({ onLogin,  error }) {
 
             onLogin(username, password)
         }}>
+            <img className="avatar" src={`${imageSRC }`}  alt="Avatar Image"></img>
             <h1 className="login__title">Login</h1>
             <input className="login__field" type="text" name="username" placeholder="username" />
             <input className="login__field" type="password" name="password" placeholder="password" />

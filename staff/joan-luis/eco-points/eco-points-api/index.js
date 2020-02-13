@@ -18,6 +18,7 @@ api.use('/garbage', garbage)
 api.use('/image', image)
 api.use('/pictures', pictures)
 api.use(express.static('data'))
+api.use(express.static('public'))
 
  
 database

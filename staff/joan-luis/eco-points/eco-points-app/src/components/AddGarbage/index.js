@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import uploadImage from '../../utils/upload-picture'
 import './index.css'
 import Logic from '../../logic'
-
+const imageSRC= "/images/cuidado-natura.png"
 
 
 
@@ -56,7 +56,7 @@ export default function ({onGoMap, error }) {
         onGoMap()
     }
         return <section className="view-landing">
-            <img src="/images/cuidado-natura-png" className="avatar" alt="Avatar Image"></img>
+            <img className="avatar" src={`${imageSRC }`}  alt="Avatar Image"></img>
             <h1>Add garbage Here</h1>
             <form className="addGarbage" encType="multipart/form-data" onSubmit={handleSetData}>
                 

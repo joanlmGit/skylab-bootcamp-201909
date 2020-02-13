@@ -8,8 +8,8 @@ body {
 }
 
 .view-register {
-  width: 320px;
-  height: 520px;
+  width: 420px;
+  height: 570px;
   background: #000;
   color: #fff;
   top: 50%;
@@ -21,6 +21,7 @@ body {
 }
 
 .view-register .avatar {
+  background-color: black;
   width: 100px;
   height: 100px;
   border-radius: 50%;
@@ -79,4 +80,80 @@ body {
 
 .view-register .register__link:hover {
   color: #fff;
+}
+
+@media screen and (max-width: 600px){
+  .view-register {
+    width: 250px;
+    height: 450px;
+    background: #000;
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 70px 30px;
+  }
+
+  .view-register input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .view-register h1 {
+    margin: 0;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 1.1rem;
+  }
+
+  .view-register .avatar {
+    background-color: black;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: absolute;
+    top: -25px;
+    left: calc(50% - 25px);
+  }
+
+}
+
+@media screen and (min-width: 601px) and (max-width: 800px){
+  .view-register {
+    width: 350px;
+    height: 450px;
+    background: #000;
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 70px 30px;
+  }
+
+  .view-register input {
+  width: 100%;
+  margin-bottom: 10px;
+  }
+
+  .view-register h1 {
+  margin: 0;
+  padding: 0 0 20px;
+  text-align: center;
+  font-size: 1.3rem;
+  }
+
+  .view-register .avatar {
+  background-color: black;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  position: absolute;
+  top: -25px;
+  left: calc(50% - 38px);
+  }
+
 }

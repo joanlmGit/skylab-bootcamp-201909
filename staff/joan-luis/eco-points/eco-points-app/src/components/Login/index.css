@@ -8,8 +8,8 @@ body {
   }
   
   .view-login {
-    width: 320px;
-    height: 420px;
+    width: 450px;
+    height: 550px;
     background: #000;
     color: #fff;
     top: 50%;
@@ -21,6 +21,7 @@ body {
   }
   
   .view-login .avatar {
+    background-color: black;
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -45,7 +46,7 @@ body {
   
   .view-login input {
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
   }
   
   .view-login input[type="text"], .view-login input[type="password"] {
@@ -66,6 +67,7 @@ body {
     color: #fff;
     font-size: 18px;
     border-radius: 20px;
+    margin-bottom: 60px;
   }
   
   .view-login input[type="submit"]:hover {
@@ -86,3 +88,78 @@ body {
     color: #fff;
   }
   
+  @media screen and (max-width: 600px){
+    .view-login {
+      width: 250px;
+      height: 350px;
+      background: #000;
+      color: #fff;
+      top: 50%;
+      left: 50%;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      box-sizing: border-box;
+      padding: 70px 30px;
+  }
+
+  .view-login input {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .view-login h1 {
+    margin: 0;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 1.1rem;
+  }
+
+  .view-login .avatar {
+    background-color: black;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: absolute;
+    top: -25px;
+    left: calc(50% - 25px);
+  }
+
+}
+
+@media screen and (min-width: 601px) and (max-width: 800px){
+  .view-login {
+    width: 350px;
+    height: 450px;
+    background: #000;
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 70px 30px;
+  }
+
+  .view-login input {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .view-login h1 {
+    margin: 0;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 1.3rem;
+  }
+
+  .view-login .avatar {
+    background-color: black;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    position: absolute;
+    top: -25px;
+    left: calc(50% - 38px);
+  }
+
+}

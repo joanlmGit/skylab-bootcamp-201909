@@ -2,6 +2,7 @@ import React from 'react'
 import './index.css'
 import Feedback from '../Feedback'
 import {Link} from 'react-router-dom'
+const imageSRC= "/images/cuidado-natura.png"
 
 export default function({ onRegister, onBack, error }) {
     return <section className="view-register">
@@ -12,6 +13,7 @@ export default function({ onRegister, onBack, error }) {
 
             onRegister(name, surname, email, username, password)
         }}>
+            <img className="avatar" src={`${imageSRC }`}  alt="Avatar Image"></img>
             <h1 className="register__title">Register</h1>
             <input className="register__field" type="text" name="name" placeholder="name" />
             <input className="register__field" type="text" name="surname" placeholder="surname" />
