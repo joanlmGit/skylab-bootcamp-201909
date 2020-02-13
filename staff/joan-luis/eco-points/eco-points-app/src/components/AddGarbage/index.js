@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Feedback from '../Feedback'
-import { ContentError } from 'eco-points-utils'
 import {Link} from 'react-router-dom'
 import uploadImage from '../../utils/upload-picture'
 import './index.css'
@@ -9,7 +8,8 @@ import Logic from '../../logic'
 
 
 
-export default function ({ error }) {
+
+export default function ({onGoMap, error }) {
 
     
 
@@ -40,18 +40,23 @@ export default function ({ error }) {
             
             try {
                 let status = false
+                if(!image){
+                   throw  new Error(error.message)
+                } 
                 const res = await Logic.createGarbage(latitude, longitude, username, status)
                 const idGarbagePoint = res.id
                 
                 await uploadImage(idGarbagePoint, image)
-                //pasamos los datos para para renderizar el mapa con el punto i posiblemente la imagen para poner popup
+               
             } catch (error) {
                 throw new Error(error.message)
             }
+             
         }
+        onGoMap()
     }
         return <section className="view-landing">
-            <img url="../../images/cuidado-natura.png" className="avatar" alt="Avatar Image"></img>
+            <img src="/images/cuidado-natura-png" className="avatar" alt="Avatar Image"></img>
             <h1>Add garbage Here</h1>
             <form className="addGarbage" encType="multipart/form-data" onSubmit={handleSetData}>
                 

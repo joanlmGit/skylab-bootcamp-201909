@@ -1,5 +1,4 @@
 import React, {useEffect,useState} from 'react';
-import Context from '../Context'
 import './App.css'
 import '../Menu/index.css'
 import Landing from '../Landing'
@@ -9,21 +8,27 @@ import Login from '../Login'
 import Addgarbage from '../AddGarbage'
 import Showpictures from '../Galery'
 import { Route, withRouter, Redirect, Router } from 'react-router-dom'
-import Logic from '../../logic' 
+import Logic from '../../logic'
+
 
 
 export default withRouter(function ({ history }) {
-   
-     
+        
     const [name, setName] = useState()
     
     useEffect(() => {
         const { token } = sessionStorage;
-
+        
+        /* (async ()=> {
+            if (token){
+                const name= await retrieveUser(token)
+                setName(name)
+            }
+        })() */
     }, [sessionStorage.token])
 
     
-
+    function handleGoMap() { history.push('/') }
     
     async function handleRegister(name, surname, email, username, password) {
         try {
@@ -46,17 +51,17 @@ export default withRouter(function ({ history }) {
             console.error(error)
         }
     }
-    
-
-    const { token } = sessionStorage 
  
+
     return <>
+       
         <Route exact path="/" render={() =>  <Menu/>} />
         <Route exact path="/" render={() =>  <Landing />} />
         <Route path="/Register" render={() => <Register onRegister={handleRegister} /> } />
         <Route path="/login" render={() => <Login onLogin={handleLogin}  />} />
-        <Route path="/AddGarbage" render={() => <Addgarbage/>}/>
+        <Route path="/AddGarbage" render={() => <Addgarbage onGoMap={handleGoMap} />}/>
         <Route path="/Galery" render= {()=> <Showpictures />}/>
+       
     </>
 })
 

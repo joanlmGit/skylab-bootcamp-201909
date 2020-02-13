@@ -12,16 +12,18 @@ describe('logic - retrieve all garbage points', () => {
     let point, longitude, latitude, status, location, name
 
     beforeEach(async() => {
-        longitude= Math.random() *(90-0)+0
-        latitude = Math.random() *(180-0)+0
-        name = "Antonio"
-        status= false
-        location= {"type": "Point","coordinates": [latitude,longitude]}
         
-        await Garbage.deleteMany()
+         Garbage.deleteMany()
+        
+        for (let i=0; i<10; i++){
 
-        point = await createGarbage(location,name, status)
-
+            longitude= Math.random() *(90-0)+0
+            latitude = Math.random() *(180-0)+0
+            name = "Antonio"
+            status= false
+            location= {"type": "Point","coordinates": [latitude,longitude]}
+             await Garbage.create(location, name, status)
+        }
     })
 
     it('should succeed on correct reatrive garbage', async () => {
@@ -29,7 +31,8 @@ describe('logic - retrieve all garbage points', () => {
 
         expect(allGarbage).to.be.defined
 
-        
+        expect(allGarbage.length).to.equal(10)
+        //todo more spect        
     })
 
     // TODO other cases

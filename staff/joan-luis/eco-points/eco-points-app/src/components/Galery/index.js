@@ -29,7 +29,7 @@ function Galery(error){
 
     return <>
      <div className="view-galery">
-        <h1>Eco Locations Galery </h1> 
+        <h1>Eco Points Galery </h1> 
         <ul className="galery__container">
             {pictures && pictures.map(item => {return <> <li key={item.index} className="container__item"><img key={item.index} className="item-image" src= {`${REACT_APP_API_URL + item.file}`}/></li></>})} 
         </ul>

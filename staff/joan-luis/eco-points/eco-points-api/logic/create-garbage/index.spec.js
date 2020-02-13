@@ -10,7 +10,7 @@ const retrieveGarbage=require('../retrieve-garbage')
 describe('logic - create garbage', () => {
     before(() => database.connect(TEST_DB_URL))
 
-    const point, longitude, latitude, status, location, name
+    const  longitude, latitude, status, location, name
 
     beforeEach(async() => {
         longitude= 35.917973
@@ -18,30 +18,27 @@ describe('logic - create garbage', () => {
         name = "Antonio"
         status= false
         location= {"type": "Point","coordinates": [latitude,longitude]}
-        await Garbage.deleteMany() 
+        return Garbage.deleteMany() 
         
-        point = await createGarbage(location,name, status)       
+               
     })
 
     it('should succeed on correct create point', async() => {
-    
+        const response = await Garbage.create(location,name, status)
+                
         expect(response).to.be.undefined
 
-        // TODO more expects
-    })
-
-    it('should exist point garbage', async () => {
         const garbage= await retrieveGarbage(response.id)
 
-        expect(garbage.location).to.be(response.location)
-        expect(garbage.name).to.be(response.name)
-        expect(garbage.status).to.be(response.status)
-       
+        expect(garbage.location[0]).to.equal(response.location[0])
+        expect(garbage.location[1]).to.equal(response.location[1])
+        expect(garbage.name).to.equal(response.name)
+        expect(garbage.status).to.equal(response.status)
+
         // TODO more expects
     })
 
-
-    // TODO other cases
+    
 
     after(() => User.deleteMany().then(database.disconnect))
 })
