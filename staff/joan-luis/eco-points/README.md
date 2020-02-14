@@ -9,7 +9,7 @@ The user can enter the point using the menu option addgarbage. This option will 
 
 
 ## Functional Description
-* Add garbage point: you need to access the websuit and select the menu item add point garbage. A new page will appear and you will be asked to enter your name and     include an image of the discharge. it will only be possible to add a point every 100 meters.
+* Add garbage point: you need to access the websuit and select the menu item add point garbage. A new page will appear and you will be asked to enter your name and     include an image of the discharge. it will only be possible to add a point every 100 meters (Future implementattion)
 
 * Clean garbage point: To indicate that the garbage point has been cleaned, it is necessary to click on the point and a popup will appear that will allow you to        upload an image. The popup will not be displayed unless it is logged in, and in order to log in you will need to register first.
 * Register and Login user.
@@ -35,7 +35,7 @@ The user can enter the point using the menu option addgarbage. This option will 
     Javascript (ES6)
 #### Client
 
-+ ReactJS
++ React Hooks
 + Html5
 + CSS
 
@@ -46,24 +46,32 @@ The user can enter the point using the menu option addgarbage. This option will 
 
 ## Results test ⚙️
 
-_Explica como ejecutar las pruebas automatizadas para este sistema_
+_
 
 
-## Versionado 📌
+## Version 📌
 v.0
 
 
-## Autores ✒️
+## Authors ✒️
 
 * **Joan Luis Morales** - *Trabajo Inicial* - [git Joan](https://github.com/joan)
 
-## Expresiones de Gratitud 🎁
+## Thanks to 🎁
 
-* Teach Team, 
+* Skylab Coders
+* Teach Team: Manu, Jose, Jorge 
 * 
-* Martín, Aitor, Nacho,  Xavi Sevilla, Isidro, Adri H, Jose y Oscar Rodriguez  🤓
+* thanks in general; Bootcampmates, remarkable: Martín, Aitor, Nacho,  Xavi Sevilla, Isidro, Adri H, Jose y Oscar Rodriguez  🤓
 * 
+## Difficulties
+* Linux system problems of software and hardware to run some frameworks and libraries such as Sass and  Mocha
 
+## Future Versions
+* Include the image of the Location created in the popup view
+* Do not allow to add more locations within a radius of 100m
+* The action that allows the modification of the echo point by clicking on the popup image. The logic must verify the existence of the user,
+ only logged-in users can modify the eco-points
 
 
 
