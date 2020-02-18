@@ -11,10 +11,10 @@ const REACT_APP_API_URL=process.env.REACT_APP_API_URL
 
 
 function Galery(error){
-    
+   
     let [pictures, setPictures]=useState()
     useEffect(()=>{
-      debugger
+      
         (async () =>{
             try{
               pictures= await logic.listPictures()

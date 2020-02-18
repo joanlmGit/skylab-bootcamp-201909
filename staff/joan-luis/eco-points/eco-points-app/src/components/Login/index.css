@@ -1,7 +1,7 @@
-body {
+.body-login {
     margin: 0;
     padding: 0;
-    background: url(../../images/IslanGarbageOcean.jpeg) no-repeat center top;
+    background: 0;
     background-size: cover;
     font-family: sans-serif;
     height: 100vh;
@@ -29,8 +29,16 @@ body {
     top: -50px;
     left: calc(50% - 50px);
   }
+
+  .body-login h1{
+    margin: 0 0 60px;
+    padding: 1em;
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 3em;
+  }  
   
-  .view-login h1 {
+  .view-login h2 {
     margin: 0;
     padding: 0 0 20px;
     text-align: center;
@@ -101,13 +109,33 @@ body {
       box-sizing: border-box;
       padding: 70px 30px;
   }
+  .body-login h1{
+    margin: 0 0 60px;
+    padding: 1em;
+    text-align: center;
+    font-size: 1.5em;
+    margin-bottom: 3em;
+  }  
+
 
   .view-login input {
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 
-  .view-login h1 {
+  .view-login input[type="submit"] {
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #b80f22;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    padding-top: 5px;
+  }
+
+  .view-login h2 {
     margin: 0;
     padding: 0 0 20px;
     text-align: center;
@@ -145,7 +173,7 @@ body {
     margin-bottom: 20px;
   }
 
-  .view-login h1 {
+  .view-login h2 {
     margin: 0;
     padding: 0 0 20px;
     text-align: center;

@@ -1,9 +1,9 @@
 .body{
-  margin: 0rem;
+  margin: 1rem;
   padding: 0rem;
 }
 
 .leaflet-container {
-  height: 500px;
+  height: 100%;
   width: 100%;
 }

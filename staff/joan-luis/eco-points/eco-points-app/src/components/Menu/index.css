@@ -1,5 +1,7 @@
+
 .landing__menu{
-    top: 0;
+    margin-top: 0;
+    margin-bottom: 0;
     background-color:black;
     margin: 0em;
     padding: 0em;
@@ -7,21 +9,46 @@
 
 .landing-title{
     list-style-type: none;
-    top: 0;
+    margin-top: 0em;
+    margin-bottom: 0.4em;
+    padding-top: 0.5em;
     text-align: center;
     color: white;
     font-size: 2.5rem;
+    padding: 0;
+}
+
+.landing-user{
+    font-size: 1em;
+    color: #5b6fe6;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: 0px;
+    left: 10px;
 }
 
 .landing__nav {
-    display: inline;
+    display: flex;
     text-align: center; 
-    align-items: center;
-    font-size: 1.2rem;   
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    list-style: none;
+    font-size: 1.2rem; 
+    display: flex;  
+}
+
+li{
+    flex: auto;
+    text-align: center;
+    margin-bottom: auto;
+    margin-bottom: 1em;
 }
 
 
 .landing__button{
+    display: auto;
     margin: 0 10px 0 0;
     text-align: center;
     align-items: center;
@@ -35,6 +62,10 @@
         text-align: center;
         color: white;
         font-size: 2rem;  
+    }
+
+    .landing-user{
+        font-size: 0.7em;
     }
     
     
@@ -53,7 +84,10 @@
         color: white;
         font-size: 1.5rem;  
     }
-    
+
+    .landing-user{
+        font-size: 0.5em;
+    }
     
     .landing__button{
         font-size: 0.7rem;

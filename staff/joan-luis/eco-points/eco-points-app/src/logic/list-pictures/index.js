@@ -1,4 +1,3 @@
-import call from '../../utils/call'
 
 const REACT_APP_API_URL = process.env.REACT_APP_API_URL
 
@@ -11,7 +10,7 @@ const REACT_APP_API_URL = process.env.REACT_APP_API_URL
  * of the garbage points
  */
 export default function () {
-
+    
     return (async () => {
         const response = await fetch(`${REACT_APP_API_URL}/pictures`, {
             method: 'GET',
@@ -24,8 +23,6 @@ export default function () {
         }
         
         const pictures= await response.json()
-        return pictures
-            
-        
+        return pictures 
     })()
 }

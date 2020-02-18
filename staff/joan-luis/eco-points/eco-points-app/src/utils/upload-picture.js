@@ -8,10 +8,9 @@ export default function (id,image){
 
     return (async () => {
 
-
         const response = await fetch (`${API_URL}/image/${id}`, {
             method: 'POST',
-            //headers: { 'content-type': 'application/json' },
+            //headers: { 'content-type': 'application/json'},
             body: fs
         })
 
@@ -23,7 +22,5 @@ export default function (id,image){
             return await response.json()
         }
     })()
-
-
 
 }
