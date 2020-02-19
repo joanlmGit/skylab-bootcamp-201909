@@ -44,7 +44,7 @@ export default withRouter(function ({ history }) {
     async function handleLogin(username, password) {
         try {
             const token = await Logic.authenticateUser(username, password)
-            debugger
+            
             sessionStorage.token = token
 
             history.push('/')

@@ -1,13 +1,12 @@
-body {
+.body-addgarbage {
     margin: 0;
     padding: 0;
     background: url(../../images/IslanGarbageOcean.jpeg) no-repeat center top;
-    background-size: cover;
-    font-family: sans-serif;
+    background-size: cover; 
     height: 100vh;
 }
 
-.view-landing {
+.view-addgarbage {
     width: 450px;
     height: 550px;
     background: #000;
@@ -20,7 +19,7 @@ body {
     padding: 70px 30px;
 }
 
-.view-landing .avatar {
+.view-addgarbage .avatar {
     background-color: black;
     width: 100px;
     height: 100px;
@@ -29,7 +28,7 @@ body {
     top: -50px;
     left: calc(50% - 50px);
 }
-.view-landing h1 {
+.view-addgarbage h1 {
     margin: 0;
     padding: 0 0 20px;
     text-align: center;
@@ -38,12 +37,12 @@ body {
 
 
 
-.view-landing input {
+.view-addgarbage input {
     width: 100%;
     margin-bottom: 40px;
 }
   
-  .view-landing input[type="text"], .view-landing input[type="file"] {
+  .view-addgarbage input[type="text"], .view-addgarbage input[type="file"] {
     border: none;
     border-bottom: 1px solid #fff;
     background: transparent;
@@ -53,7 +52,7 @@ body {
     font-size: 1rem;
   }
   
-  .view-landing input[type="submit"] {
+  .view-addgarbage input[type="submit"] {
     border: none;
     outline: none;
     height: 40px;
@@ -63,13 +62,13 @@ body {
     border-radius: 20px;
   }
 
-  .view-landing input[type="submit"]:hover {
+  .view-addgarbage input[type="submit"]:hover {
     cursor: pointer;
     background: #ffc107;
     color: #000;
   }
   
-  .view-landing .landing__link {
+  .view-addgarbage .addgarbage__link {
     text-decoration: none;
     font-size: 12px;
     line-height: 20px;
@@ -77,12 +76,12 @@ body {
     color: darkgrey;
   }
   
-  .view-landing .landing__link:hover {
+  .view-addgarbage .addgarbage__link:hover {
     color: #fff;
   }
   
   @media screen and (max-width: 600px){
-    .view-landing {
+    .view-addgarbage {
       width: 250px;
       height: 350px;
       background: #000;
@@ -95,19 +94,19 @@ body {
       padding: 70px 30px;
   }
 
-  .view-landing input {
+  .view-addgarbage input {
     width: 100%;
     margin-bottom: 20px;
   }
 
-  .view-landing h1 {
+  .view-addgarbage h1 {
     margin: 0;
     padding: 0 0 20px;
     text-align: center;
     font-size: 1.1rem;
   }
 
-  .view-landing .avatar {
+  .view-addgarbage .avatar {
     background-color: black;
     width: 50px;
     height: 50px;
@@ -120,7 +119,7 @@ body {
 }
 
 @media screen and (min-width: 601px) and (max-width: 800px){
-  .view-landing {
+  .view-addgarbage {
     width: 350px;
     height: 450px;
     background: #000;
@@ -133,19 +132,19 @@ body {
     padding: 70px 30px;
   }
 
-  .view-landing input {
+  .view-addgarbage input {
     width: 100%;
     margin-bottom: 20px;
   }
 
-  .view-landing h1 {
+  .view-addgarbage h1 {
     margin: 0;
     padding: 0 0 20px;
     text-align: center;
     font-size: 1.3rem;
   }
 
-  .view-landing .avatar {
+  .view-addgarbage .avatar {
     background-color: black;
     width: 75px;
     height: 75px;

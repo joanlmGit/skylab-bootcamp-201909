@@ -1,5 +1,4 @@
 require('dotenv').config()
-const retrieveAllGarbage = require('../../logic/retrieve-all-garbage')
 const fs = require('fs')
 const IMG_URL = process.env.IMG_URL
 
@@ -16,10 +15,11 @@ const IMG_URL = process.env.IMG_URL
 module.exports = function () {
     let pictures = []
     let objPictures = {}
-    debugger
+    
     return (async () => {
         try {
             let allpoints = await retrieveAllGarbage()
+            //let allpoints=points
             let allGarbage = JSON.parse(allpoints)
             if (allGarbage){
                

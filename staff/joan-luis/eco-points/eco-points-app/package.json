@@ -12,7 +12,7 @@
     "yarn": "^1.21.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "HTTPS=true react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --runInBand --no-cache",
     "test:debug": "react-scripts inspect test --runInBand --no-cache",

@@ -1,30 +1,32 @@
 import React from 'react'
 import './index.css'
 import Feedback from '../Feedback'
-import {Link} from 'react-router-dom'
-const imageSRC= "/images/cuidado-natura.png"
+import { Link } from 'react-router-dom'
+const imageSRC = "/images/cuidado-natura.png"
 
-export default function({ onRegister, onBack, error }) {
-    return <section className="view-register">
-        <form onSubmit={function (event) {
-            event.preventDefault()
-            
-            const { name: { value: name }, surname: { value: surname }, email: { value: email }, username: { value: username }, password: { value: password } } = event.target
+export default function ({ onRegister, onBack, error }) {
+    return <body className="body-register">
+        <section className="view-register">
+            <form onSubmit={function (event) {
+                event.preventDefault()
 
-            onRegister(name, surname, email, username, password)
-        }}>
-            <img className="avatar" src={`${imageSRC }`}  alt="Avatar Image"></img>
-            <h1 className="register__title">Register</h1>
-            <input className="register__field" type="text" name="name" placeholder="name" />
-            <input className="register__field" type="text" name="surname" placeholder="surname" />
-            <input className="register__field" type="email" name="email" placeholder="e-mail" />
-            <input className="register__field" type="text" name="username" placeholder="username" />
-            <input className="register__field" type="password" name="password" placeholder="password" />
-            <input className="register__submit" type="submit"></input>
-            <Link className="register__link" to='/Login'>Go to Login</Link>
-            <Link className="register__link" to='/'>Go to Map</Link>
-        </form>
+                const { name: { value: name }, surname: { value: surname }, email: { value: email }, username: { value: username }, password: { value: password } } = event.target
 
-        {error && <Feedback message={error} />}
-    </section>
+                onRegister(name, surname, email, username, password)
+            }}>
+                <img className="avatar" src={`${imageSRC}`} alt="Avatar Image"></img>
+                <h1 className="register__title">Register</h1>
+                <input className="register__field" type="text" name="name" placeholder="name" />
+                <input className="register__field" type="text" name="surname" placeholder="surname" />
+                <input className="register__field" type="email" name="email" placeholder="e-mail" />
+                <input className="register__field" type="text" name="username" placeholder="username" />
+                <input className="register__field" type="password" name="password" placeholder="password" />
+                <input className="register__submit" type="submit"></input>
+                <Link className="register__link" to='/Login'>Go to Login</Link>
+                <Link className="register__link" to='/'>Go to Map</Link>
+            </form>
+
+            {error && <Feedback message={error} />}
+        </section>
+    </body>
 }

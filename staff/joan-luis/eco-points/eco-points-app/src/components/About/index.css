@@ -1,6 +1,7 @@
 
 .body-about{
-    background: darkslategrey;
+    /* background: none; */
+    background-color: darkslategrey;
     margin: 0em;
     padding-block-end: 0em;
 }
@@ -34,7 +35,7 @@
    font-size: 18px; 
    font-weight: 400; 
    color: white; 
-   background:darkslategrey; 
+   background-color:darkslategrey; 
    margin-bottom: 2em;
    margin-left: 5%;
    margin-right: 5%;

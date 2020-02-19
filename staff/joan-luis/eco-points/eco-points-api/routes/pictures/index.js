@@ -10,7 +10,7 @@ const router = Router()
 
 
 router.get('/',jsonBodyParser, (req, res)=> {
-    
+    //const dataLocations=req.body
     try{
         listPictures()
             .then((pictures)=> res.status(200).send(pictures))
