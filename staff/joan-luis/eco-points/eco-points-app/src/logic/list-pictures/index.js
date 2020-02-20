@@ -9,14 +9,14 @@ const REACT_APP_API_URL = process.env.REACT_APP_API_URL_IMG
  * all the photos uploaded by the users 
  * of the garbage points
  */
-export default function () {
+export default function (datapoints) {
 
    
     return (async () => {
         const response = await fetch(`${REACT_APP_API_URL}/pictures`, {
-            method: 'GET',
+            method: 'POST',
             headers: { 'content-type': 'application/json' },
-            //body: JSON.stringify(datapoints)
+            body: JSON.stringify(datapoints)
         })
 
         if (response.status !== 200) {

@@ -8,11 +8,11 @@ const jsonBodyParser = bodyParser.json()
 
 const router = Router()
 
-
-router.get('/',jsonBodyParser, (req, res)=> {
-    //const dataLocations=req.body
+debugger
+router.post('/',jsonBodyParser, (req, res)=> {
+    const {body: dataLocations}=req
     try{
-        listPictures()
+        listPictures(dataLocations)
             .then((pictures)=> res.status(200).send(pictures))
             .catch(error => {
                 const { message } = error

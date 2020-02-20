@@ -11,18 +11,19 @@ const REACT_APP_API_URL = process.env.REACT_APP_API_URL_IMG
 
 
 function Galery(error) {
-
+    
     let [pictures, setPictures] = useState()
     //let [datapoints, setDatapoints]=useState()
-     
+    let datapoints
         
     useEffect(() => {
-              
+         debugger     
         (async () => {
             try {
-                /* datapoints = await logic.retrieveAllGarbage()
-                setDatapoints(datapoints) */
-                pictures = await logic.listPictures()
+                datapoints = await logic.retrieveAllGarbage()
+                //setDatapoints(datapoints)
+                
+                pictures = await logic.listPictures(datapoints)
                 setPictures(pictures)
             } catch (error) {
                 console.log(error.message)
