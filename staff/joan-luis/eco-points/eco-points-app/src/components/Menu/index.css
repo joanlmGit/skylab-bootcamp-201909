@@ -5,6 +5,7 @@
     background-color:black;
     margin: 0em;
     padding: 0em;
+   
 }
 
 .landing-title{
@@ -53,6 +54,7 @@ li{
     text-align: center;
     align-items: center;
     color: #74b174;
+    text-decoration: none;
 }
 
 @media (max-width: 700px){
@@ -77,6 +79,8 @@ li{
 }
 
 @media (max-width: 520px){
+     
+    
     .landing-title{
         list-style-type: none;
         top: 0;

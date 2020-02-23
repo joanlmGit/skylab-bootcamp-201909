@@ -1,5 +1,5 @@
 
-const REACT_APP_API_URL = process.env.REACT_APP_API_URL_IMG
+const REACT_APP_API_URL = process.env.REACT_APP_API_URL
 
 //retorna les images del back-end del point garbage
 
@@ -14,9 +14,9 @@ export default function (datapoints) {
    
     return (async () => {
         const response = await fetch(`${REACT_APP_API_URL}/pictures`, {
-            method: 'POST',
+            method: 'GET',
             headers: { 'content-type': 'application/json' },
-            body: JSON.stringify(datapoints)
+            
         })
 
         if (response.status !== 200) {

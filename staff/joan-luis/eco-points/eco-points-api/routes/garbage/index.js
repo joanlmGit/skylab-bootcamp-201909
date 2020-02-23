@@ -29,7 +29,7 @@ router.get('/one/:garbageId',jsonBodyParser, (req, res)=> {
 
 router.get('/',jsonBodyParser, (req, res)=> {
     //let garbageId =req.params.garbageId //ha de solicitar todos los puntos
-    debugger
+    
     try{
         retrieveAllGarbage()
             .then((garbages)=> res.status(200).send(garbages))

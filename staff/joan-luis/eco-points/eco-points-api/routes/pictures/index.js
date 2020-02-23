@@ -8,7 +8,7 @@ const jsonBodyParser = bodyParser.json()
 
 const router = Router()
 
-debugger
+
 router.post('/',jsonBodyParser, (req, res)=> {
     const {body: dataLocations}=req
     try{

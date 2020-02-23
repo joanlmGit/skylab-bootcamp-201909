@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './index.css'
 export default function({name}){
+ 
+    
+    
     return  <>
         <header className="landing__menu">
             <h1 className = 'landing-title'>Eco Points</h1>

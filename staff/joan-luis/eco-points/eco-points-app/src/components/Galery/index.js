@@ -1,28 +1,22 @@
 /* eslint-disable no-unused-expressions */
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState} from 'react'
 import { Link } from 'react-router-dom'
 import logic from '../../logic'
 import './index.css'
-const REACT_APP_API_URL = process.env.REACT_APP_API_URL_IMG
-
-
-
+const REACT_APP_API_URL = process.env.REACT_APP_API_URL
 
 
 
 function Galery(error) {
     
     let [pictures, setPictures] = useState()
-    //let [datapoints, setDatapoints]=useState()
     let datapoints
         
     useEffect(() => {
-         debugger     
+              
         (async () => {
             try {
-                datapoints = await logic.retrieveAllGarbage()
-                //setDatapoints(datapoints)
-                
+                datapoints = await logic.retrieveAllGarbage()                
                 pictures = await logic.listPictures(datapoints)
                 setPictures(pictures)
             } catch (error) {
@@ -37,7 +31,7 @@ function Galery(error) {
         <div className="view-galery">
             <h1>Eco Points Galery </h1>
             <ul className="galery__container">
-                {pictures && pictures.map(item => { return <> <li key={item.index} className="container__item"><img key={item.index} className="item-image" src={`${REACT_APP_API_URL + item.file}`} /></li></> })}
+                {pictures && pictures.map(item => { return <> <li key={item.id} className="container__item"><img key={item.index} className="item-image" src={`${REACT_APP_API_URL + item.file}`} /></li></> })}
             </ul>
             <Link className="galery-link" to='/'>Go to Map</Link>
         </div>

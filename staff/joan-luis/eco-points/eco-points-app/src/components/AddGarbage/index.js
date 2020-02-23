@@ -10,8 +10,7 @@ const imageSRC = "/images/cuidado-natura.png"
 
 
 export default function ({ onGoMap, error }) {
-
-
+  
 
     function handleSetData(event) {
         event.preventDefault()

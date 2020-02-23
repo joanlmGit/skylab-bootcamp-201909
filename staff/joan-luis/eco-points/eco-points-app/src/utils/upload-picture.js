@@ -1,5 +1,5 @@
 
-const   API_URL= process.env.REACT_APP_API_URL_IMG
+const   API_URL= process.env.REACT_APP_API_URL
 
 export default function (id,image){
     let fs=new FormData()

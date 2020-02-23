@@ -13,6 +13,7 @@ module.exports=function (location, name, status){
     validate.string(name)
     validate.string.notVoid('name', name)
     validate.boolean(status)
+    validate.instanceOf(location,{})
     
     
     return (async ()=> {

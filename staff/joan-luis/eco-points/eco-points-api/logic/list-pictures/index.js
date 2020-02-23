@@ -11,16 +11,16 @@ const IMG_URL = process.env.IMG_URL
 * @param {array} picture give all pictures
 */
 
-//const dataLocations=[{"id":"5e4dad69648d0a001725b730","locations":{"coordinates":[1.9766294000000002,41.2800161],"type":"Point"},"names":"Joan"}]
-module.exports = function (dataLocations) {
+
+module.exports = function () {
     let pictures = []
     let objPictures = {}
     
     return (async () => {
         try {
-            //let allpoints = await retrieveAllGarbage()
-            let allpoints=dataLocations
-            let allGarbage = dataLocations
+            let allpoints = await retrieveAllGarbage()
+            
+            let allGarbage =allpoints
             if (allGarbage){
                
                 allGarbage.forEach((location) => {
