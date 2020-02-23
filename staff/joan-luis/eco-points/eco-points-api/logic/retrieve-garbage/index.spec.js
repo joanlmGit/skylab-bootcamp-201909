@@ -25,12 +25,20 @@ describe('logic - retrieve one garbage points', () => {
     })
 
     it('should succeed on correct reatrive garbage', async () => {
-        const garbage = await retrieveGarbage(id)
+        
+                
+        const garbage= await retrieveGarbage(id)
+        const {gLocation, gName, gStatus}=garbage
 
-        expect(point).to.exist
-        expect(point.location).to.equal(location)
-        expect(point.name).to.equal(name)
-        expect(point.status).to.equal(status)
+        expect(gLocation).to.have.property('coordinates').with.lengthOf(2)
+        expect({gLocation: {coordinates: []}}).to.nested.include({'Location.coordinates[1]': longitude});
+
+        expect(gName).to.be.a('string')
+        expect(gName).to.equal(name)
+        expect(gStatus).to.be.a('boolean')
+        expect(gStatus).to.equal(status)
+
+        
 
     })
 
@@ -56,7 +64,7 @@ describe('logic - retrieve one garbage points', () => {
         ).to.throw(`The value of location id is undefined`)
     )
 
-    // TODO other cases
+    
 
     after(() => User.deleteMany().then(database.disconnect))
 })

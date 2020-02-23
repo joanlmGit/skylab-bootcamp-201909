@@ -3,7 +3,7 @@ const { env: { TEST_DB_URL } } = process
 const { expect } = require('chai')
 const { random } = Math
 const { errors: { ContentError } } = require('eco-points-utils')
-const { database, models: { User, Garbage } } = require('eco-points-data')
+const { database, models: {  Garbage } } = require('eco-points-data')
 const createGarbage = require('.')
 
 
@@ -26,14 +26,16 @@ describe('logic - create garbage', () => {
     it('should succeed on correct create point', async() => {
         const response = await createGarbage(location,name, status)
                 
-        expect(response).to.be.undefined
-
         const garbage= await retrieveGarbage(response)
+        const {gLocation, gName, gStatus}=garbage
 
-        expect(garbage.location[0]).to.equal(response.location[0])
-        expect(garbage.location[1]).to.equal(response.location[1])
-        expect(garbage.name).to.equal(response.name)
-        expect(garbage.status).to.equal(response.status)
+        expect(gLocation).to.have.property('coordinates').with.lengthOf(2)
+        expect({gLocation: {coordinates: []}}).to.nested.include({'Location.coordinates[1]': longitude});
+
+        expect(gName).to.be.a('string')
+        expect(gName).to.equal(name)
+        expect(gStatus).to.be.a('boolean')
+        expect(gStatus).to.equal(status)
 
     })
 
@@ -66,8 +68,13 @@ describe('logic - create garbage', () => {
         expect(() => createGarbage(name, undefined)).to.throw(TypeError, 'undefined is not a string')
         expect(() => createGarbage(name, null)).to.throw(TypeError, 'null is not a string')
 
-        expect(() => createGarbage(name, '')).to.throw(ContentError, 'password is empty or blank')
-        expect(() => createGarbage(name, ' \t\r')).to.throw(ContentError, 'password is empty or blank')
+        expect(() => createGarbage(status, '')).to.throw(ContentError, 'password is empty or blank')
+        expect(() => createGarbage(status, ' \t\r')).to.throw(ContentError, 'password is empty or blank')
+        expect(() => createGarbage(status, [])).to.throw(TypeError, ' is not a string')
+        expect(() => createGarbage(status, {})).to.throw(TypeError, '[object Object] is not a string')
+        expect(() => createGarbage(status, undefined)).to.throw(TypeError, 'undefined is not a string')
+        expect(() => createGarbage(status, null)).to.throw(TypeError, 'null is not a string')
+
     })
 
     

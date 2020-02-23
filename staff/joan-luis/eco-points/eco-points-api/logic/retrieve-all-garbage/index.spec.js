@@ -1,7 +1,6 @@
 require('dotenv').config()
 const { env: { TEST_DB_URL } } = process
 const { expect } = require('chai')
-const { random } = Math
 const { errors: { ContentError } } = require('eco-points-utils')
 const { database, models: { Garbage } } = require('eco-points-data')
 const retreaveAllGarbage = require('.')
@@ -9,7 +8,7 @@ const retreaveAllGarbage = require('.')
 describe('logic - retrieve all garbage points', () => {
     before(() => database.connect(TEST_DB_URL))
 
-    let point, longitude, latitude, status, location, name
+    let  longitude, latitude, status, location, name
 
     beforeEach(async() => {
         
@@ -27,15 +26,18 @@ describe('logic - retrieve all garbage points', () => {
     })
 
     it('should succeed on correct reatrive garbage', async () => {
-        const allGarbage = await retrieveAllGarbage(location,name, status)
+        const allGarbage = await retrieveAllGarbage()
 
         expect(allGarbage).to.be.defined
 
-        expect(allGarbage.length).to.equal(10)
-        //todo more spect        
+        expect(allGarbage).to.be.a('array').lengthOf(10)
+        expect(allGarbage[0].location).to.have.property('coordinates')
+        expect(allGarbage[0].name).to.be.a('string')
+        expect(allGarbage[0].status).to.be.a('boolean')
+        
     })
 
-    // TODO other cases
+    
 
-    after(() => User.deleteMany().then(database.disconnect))
+    after(() => database.disconnect())
 })
