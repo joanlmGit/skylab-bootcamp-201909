@@ -1,7 +1,7 @@
 const { env: { REACT_APP_TEST_DB_URL: TEST_DB_URL, REACT_APP_TEST_SECRET: TEST_SECRET } } = process
 const retrieveUser = require('.')
 const { random } = Math
-const { errors: { NotFoundError } } = require('eco-points-utils')
+const { errors: { NotFoundError, CredentialsError } } = require('eco-points-utils')
 const { database, models: { User } } = require('eco-points-data')
 const jwt = require('jsonwebtoken')
 require('../../helpers/jest-matchers')
@@ -58,7 +58,7 @@ describe('logic - retrieve user', () => {
             throw Error('should not reach this point')
         } catch (error) {
             expect(error).toBeDefined()
-            expect(error).toBeInstanceOf(NotFoundError)
+            expect(error).toBeInstanceOf(CredentialsError)
             expect(error.message).toBe(`user with id ${id} not found`)
         }
     })

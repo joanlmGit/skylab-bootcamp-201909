@@ -36,9 +36,13 @@ describe('logic - retrieve all locations', ()=>{
         expect(allLocations).ToHaveLength(10)
 
         allLocations.beforeEach(point =>{
-            expect(point.location.coordinates).toBeDefined()
-            expect(point.location.coordinates).toBeOfType(Array)
-            expect(point.location.coordinates).ToHaveLengthGreaerThan(0)
+            expect(point.location.coordinates[0]).toBeDefined()
+            expect(point.location.coordinates[0]).toBeOfType(Array)
+            expect(point.location.coordinates[0]).ToHaveLengthGreaerThan(0)
+
+            expect(point.location.coordinates[1]).toBeDefined()
+            expect(point.location.coordinates[1]).toBeOfType(Array)
+            expect(point.location.coordinates[1]).ToHaveLengthGreaerThan(0)
 
             expect(point.name).toBeDefined()
             expect(point.name).toBeOfType('string')

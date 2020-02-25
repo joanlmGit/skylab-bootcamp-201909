@@ -1,6 +1,6 @@
 import call from '../../utils/call'
 const API_URL = process.env.REACT_APP_API_URL
-
+//const API_URL = process.env.REACT_APP_TEST_DB_URL
 /**
  * Call all points garbages
  */

@@ -9,24 +9,21 @@ require('../../helpers/jest-matchers')
 describe('logic - create point', () => {
     beforeAll(() => database.connect(TEST_DB_URL))
 
-    let id, latitude, longitude, name,status, token
+    let id, latitude, longitude, name,status
 
     beforeEach(async () => {
         name = `name-${random()}`
         latitude = random(180)
         longitude= random(90)
         status = false
+        let location= {"type": "Point","coordinates": [latitude,longitude]}
         
-        let location ={
-            coordinates:[latitude, longitude],
-            type:'Point'
-        }
 
         await Promise.all([Garbage.deleteMany()])
 
         const pointgarbage = await Garbage.create({ location, name,status })
 
-        id = pointgarbage.id
+        id = pointgarbage
         token = jwt.sign({ sub: id }, TEST_SECRET)
 
         
@@ -34,23 +31,25 @@ describe('logic - create point', () => {
 
     it('should succeed on correct create a point of garbage', async () => {
         const garbageId = await createGarbage(location, name, status)
-        const {longitude,latitude}=location
+        
 
         expect(garbageId).toBeDefined()
-        expect(ggarbageId).toBeOfType('string')
+        expect(garbageId).toBeOfType('string')
         expect(garbageId).toHaveLengthGreaterThan(0)
 
         const garbage = await garbage.findById(garbageId)
 
         expect(garbage).toBeDefined()
-        expect(garbage.latitude).toString().toBe(latitude) // buscar mejor opcion para comprobar enter valores
-        expect(garbage.longitude).toBe(longitude)
+        expect(garbage.location.coordinates[0]).toString().toBe(latitude) // buscar mejor opcion para comprobar enter valores
+        expect(garbage.location.coordinates[0]).toString().toBe(longitude)
         expect(garbage.name).toBe(name)
         expect(garbage.status).toBe(false)
         
     })
 
-    // TODO other test cases
 
-    afterAll(() => Promise.all([User.deleteMany(), garbage.deleteMany()]).then(database.disconnect))
+
+    
+
+    afterAll(() => database.disconnect())
 })
