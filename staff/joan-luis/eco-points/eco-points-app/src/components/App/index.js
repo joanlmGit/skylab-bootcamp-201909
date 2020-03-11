@@ -8,7 +8,7 @@ import Login from '../Login'
 import Addgarbage from '../AddGarbage'
 import Showpictures from '../Galery'
 import ShowAbout from '../About'
-import { Route, withRouter, Redirect, Router } from 'react-router-dom'
+import { Route, withRouter } from 'react-router-dom'
 import Logic from '../../logic'
 
 

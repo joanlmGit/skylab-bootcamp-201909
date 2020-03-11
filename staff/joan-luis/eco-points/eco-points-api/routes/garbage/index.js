@@ -11,10 +11,12 @@ const jsonBodyParser = bodyParser.json()
 const router = Router()
 
 router.get('/one/:garbageId',jsonBodyParser, (req, res)=> {
-    let garbageId =req.params.garbageId
+    //let garbageId =req.params.garbageId
+    const {  params: { garbageId }}=req
+    debugger
     try{
         retrieveGarbage(garbageId)
-            .then((garbage)=> res.status(200).json(garbage))
+            .then((garbage)=> res.status(200).send(garbage))
             .catch(error => {
                 const { message } = error
                 res.status(500).json({ message })
@@ -28,7 +30,7 @@ router.get('/one/:garbageId',jsonBodyParser, (req, res)=> {
 
 
 router.get('/',jsonBodyParser, (req, res)=> {
-    //let garbageId =req.params.garbageId //ha de solicitar todos los puntos
+    
     
     try{
         retrieveAllGarbage()
@@ -51,6 +53,7 @@ router.post('/', jsonBodyParser, (req, res) => {
     
     
     try {
+        
         createPoint(location, name, status)
             //.then()=> res.status(201).end())                                    //=> insertPicture(idpoint, file, filename ))
             .then((id) => res.status(201).json({id}))

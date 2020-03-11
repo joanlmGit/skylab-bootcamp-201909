@@ -1,10 +1,10 @@
 const {validate, errors: {ConflictError}}= require('eco-points-utils')
 const {models: { Garbage } } = require('eco-points-data')
 
-module.exports=function (){
+module.exports=function (garbageId){
 
     
-    
+    debugger
     
     
     return (async ()=> {

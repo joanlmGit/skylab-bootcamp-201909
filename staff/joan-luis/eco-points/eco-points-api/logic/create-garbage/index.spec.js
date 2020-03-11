@@ -1,16 +1,17 @@
 require('dotenv').config()
-const { env: { TEST_DB_URL } } = process
+const createGarbage=require('.')
+//const { env: { DB_URL } } = process
+const TEST_DB_URL=process.env.DB_URL
 const { expect } = require('chai')
-const { random } = Math
 const { errors: { ContentError } } = require('eco-points-utils')
-const { database, models: {  Garbage } } = require('eco-points-data')
-const createGarbage = require('.')
+const { database, models: {Garbage } } = require('eco-points-data')
+
 
 
 describe('logic - create garbage', () => {
     before(() => database.connect(TEST_DB_URL))
 
-    const  longitude, latitude, status, location, name
+    let  longitude, latitude, status, location, name, id
 
     beforeEach(async() => {
         longitude= 35.917973
@@ -18,23 +19,25 @@ describe('logic - create garbage', () => {
         name = "Antonio"
         status= false
         location= {"type": "Point","coordinates": [latitude,longitude]}
-        return Garbage.deleteMany() 
+         
+        await Garbage.deleteMany()
+        id= await logic.createGarbage(location,name, status)
         
-               
+        
     })
 
     it('should succeed on correct create point', async() => {
-        const response = await createGarbage(location,name, status)
-                
-        const garbage= await retrieveGarbage(response)
+        
+        const garbage= await Garbage.findById(id)
         const {gLocation, gName, gStatus}=garbage
 
-        expect(gLocation).to.have.property('coordinates').with.lengthOf(2)
-        expect({gLocation: {coordinates: []}}).to.nested.include({'Location.coordinates[1]': longitude});
+        console.log(garbage)
 
-        expect(gName).to.be.a('string')
+        expect(typeof gLocation).to.equal('string')
+        expect(typeof gName).to.equal('string')
         expect(gName).to.equal(name)
-        expect(gStatus).to.be.a('boolean')
+        expect(gName.length).to.be.greaterThan(0)
+        expect(typeof gStatus).to.equal('boolean')
         expect(gStatus).to.equal(status)
 
     })
@@ -43,7 +46,7 @@ describe('logic - create garbage', () => {
         const response = "csd5546c4546dfe4s5d"
                 
         try{
-            await Garbage.findById(response)
+            await logic.retrieveGarbage(response)
             throw new Error('The Location not exist')
         }catch (error){
             expect(error).to.exist
@@ -53,7 +56,7 @@ describe('logic - create garbage', () => {
     // repassar aquest punt
     it('Shoul fail on incorrect location, name, status', ()=>{
 
-        expect(() => createGarbage('carlos')).to.throw(TypeError, '1 is not a location')
+        expect(() => createGarbage('carlos')).to.throw(TypeError, 'Carlos is not a location')
         expect(() => createGarbage(true)).to.throw(TypeError, 'true is not a location')
         expect(() => createGarbage(undefined)).to.throw(TypeError, 'undefined is not a Location')
         expect(() => createGarbage(null)).to.throw(TypeError, 'null is not a Location')
@@ -80,5 +83,5 @@ describe('logic - create garbage', () => {
     
 
 
-    after(() => User.deleteMany().then(database.disconnect))
+    after(() => Garbage.deleteMany().then(database.disconnect))
 })

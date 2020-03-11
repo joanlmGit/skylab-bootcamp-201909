@@ -9,12 +9,12 @@ const {models: { Garbage } } = require('eco-points-data')
  */
 module.exports=function (location, name, status){
 
-    //validate.is-instance-of(location,"object")
+    
     validate.string(name)
     validate.string.notVoid('name', name)
     validate.boolean(status)
-    validate.instanceOf(location,{})
-    
+    //validate.instanceOf(location,{})
+    validate.instanceOf(Object,location)
     
     return (async ()=> {
         //const garbage= await garbage.findOne( {/* _id?*/} )

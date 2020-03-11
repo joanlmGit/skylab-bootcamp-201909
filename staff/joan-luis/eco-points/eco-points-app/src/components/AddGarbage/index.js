@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Feedback from '../Feedback'
 import { Link } from 'react-router-dom'
 import uploadImage from '../../utils/upload-picture'

@@ -21,8 +21,8 @@ api.use(express.static('data'))
 api.use(express.static('public'))
 
  
-database
-    .connect(DB_URL)
+
+database.connect(DB_URL)
     .then(() => {
 
         api.listen(PORT, () => console.log(`${name} ${version} up and running on port ${PORT}`))

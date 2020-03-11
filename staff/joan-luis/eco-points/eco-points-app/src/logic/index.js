@@ -6,7 +6,7 @@ import createGarbage from './create-garbage'
 import listPictures from './list-pictures'
 import cleangarbage from './clean-garbage'
 import retrieveAllGarbage from './retrieve-garbages'
-
+import retrieveGarbage from './retrieve-one-garbage'
 
 
 export default {
@@ -25,5 +25,6 @@ export default {
     createGarbage,
     listPictures,
     cleangarbage,
-    retrieveAllGarbage
+    retrieveAllGarbage,
+    retrieveGarbage
 }

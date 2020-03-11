@@ -24,7 +24,7 @@ describe('logic - register user', () => {
 
     it('should succeed on correct credentials', async () => {
         const response = await User.create({name, surname, email, username, password})
-
+        
         expect(response).toBeDefined()
     
         const user = await User.findOne({ surname })
@@ -52,7 +52,7 @@ describe('logic - register user', () => {
                 expect(error.message).toBeDefined()
                 expect(typeof error.message).toBe('string')
                 expect(error.message.length).toBeGreaterThan(0)
-                expect(error.message).toBe(`user with username ${surname} already exists`)
+                expect(error.message).toBe(`E11000 duplicate key error collection: eco-points-test.users index: username_1 dup key: { : \"${username}\" }`)
             }
         })
     })

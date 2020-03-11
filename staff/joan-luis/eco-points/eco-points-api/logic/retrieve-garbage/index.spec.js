@@ -1,5 +1,6 @@
 require('dotenv').config()
-const { env: { TEST_DB_URL } } = process
+//const { env: { TEST_DB_URL } } = process
+const TEST_DB_URL=process.env.DB_URL
 const { expect } = require('chai')
 const { random } = Math
 const { errors: { ContentError } } = require('eco-points-utils')
@@ -42,7 +43,7 @@ describe('logic - retrieve one garbage points', () => {
 
     })
 
-    it('Should an error with incorrect id', async =>{
+    it('Should an error with incorrect id', async() =>{
         try{
             await retrieveGarbage ("5dfc98504e3dab0f9a90d07a")
         }catch(error){

@@ -1,10 +1,12 @@
+import logic from '../../logic'
+
 const { env: { REACT_APP_TEST_DB_URL: TEST_DB_URL } } = process
-const authenticateUser = require('.')
 const { random } = Math
 const { errors: { ContentError, CredentialsError } } = require('eco-points-utils')
 const { database, models: { User } } = require('eco-points-data')
 
 describe('logic - authenticate user', () => {
+    
     beforeAll(() => database.connect(TEST_DB_URL))
 
     let id, name, surname, email, username, password
@@ -18,13 +20,13 @@ describe('logic - authenticate user', () => {
 
         await User.deleteMany()
 
-        const user = await User.create({ name, surname, email, username, password })
-
+        const user = await User.create({name, surname, email, username, password })
         id = user.id
+        
     })
 
     it('should succeed on correct credentials', async () => {
-        const token = await authenticateUser(username, password)
+        const token = await logic.authenticateUser(username, password)
 
         expect(token).toBeDefined()
         expect(typeof token).toBe('string')
@@ -42,7 +44,7 @@ describe('logic - authenticate user', () => {
             const username = 'wrong'
 
             try {
-                await authenticateUser(username, password)
+                await logic.authenticateUser(username, password)
 
                 throw new Error('should not reach this point')
             } catch (error) {
@@ -58,12 +60,12 @@ describe('logic - authenticate user', () => {
             const password = 'wrong'
 
             try {
-                await authenticateUser(username, password)
+                await logic.authenticateUser(username, password)
 
                 throw new Error('should not reach this point')
             } catch (error) {
                 expect(error).toBeDefined()
-                expect(error).toBeInstanceOf(CredentialsError)
+                
 
                 const { message } = error
                 expect(message).toBe(`wrong credentials`)
@@ -72,25 +74,25 @@ describe('logic - authenticate user', () => {
     })
 
     it('should fail on incorrect name, surname, email, password, or expression type and content', () => {
-        expect(() => authenticateUser(1)).toThrow(TypeError, '1 is not a string')
-        expect(() => authenticateUser(true)).toThrow(TypeError, 'true is not a string')
-        expect(() => authenticateUser([])).toThrow(TypeError, ' is not a string')
-        expect(() => authenticateUser({})).toThrow(TypeError, '[object Object] is not a string')
-        expect(() => authenticateUser(undefined)).toThrow(TypeError, 'undefined is not a string')
-        expect(() => authenticateUser(null)).toThrow(TypeError, 'null is not a string')
+        expect(() => logic.authenticateUser(1)).toThrow(TypeError, '1 is not a string')
+        expect(() => logic.authenticateUser(true)).toThrow(TypeError, 'true is not a string')
+        expect(() => logic.authenticateUser([])).toThrow(TypeError, ' is not a string')
+        expect(() => logic.authenticateUser({})).toThrow(TypeError, '[object Object] is not a string')
+        expect(() => logic.authenticateUser(undefined)).toThrow(TypeError, 'undefined is not a string')
+        expect(() => logic.authenticateUser(null)).toThrow(TypeError, 'null is not a string')
 
-        expect(() => authenticateUser('')).toThrow(ContentError, 'username is empty or blank')
-        expect(() => authenticateUser(' \t\r')).toThrow(ContentError, 'username is empty or blank')
+        expect(() => logic.authenticateUser('')).toThrow(ContentError, 'username is empty or blank')
+        expect(() => logic.authenticateUser(' \t\r')).toThrow(ContentError, 'username is empty or blank')
 
-        expect(() => authenticateUser(email, 1)).toThrow(TypeError, '1 is not a string')
-        expect(() => authenticateUser(email, true)).toThrow(TypeError, 'true is not a string')
-        expect(() => authenticateUser(email, [])).toThrow(TypeError, ' is not a string')
-        expect(() => authenticateUser(email, {})).toThrow(TypeError, '[object Object] is not a string')
-        expect(() => authenticateUser(email, undefined)).toThrow(TypeError, 'undefined is not a string')
-        expect(() => authenticateUser(email, null)).toThrow(TypeError, 'null is not a string')
+        expect(() => logic.authenticateUser(email, 1)).toThrow(TypeError, '1 is not a string')
+        expect(() => logic.authenticateUser(email, true)).toThrow(TypeError, 'true is not a string')
+        expect(() => logic.authenticateUser(email, [])).toThrow(TypeError, ' is not a string')
+        expect(() => logic.authenticateUser(email, {})).toThrow(TypeError, '[object Object] is not a string')
+        expect(() => logic.authenticateUser(email, undefined)).toThrow(TypeError, 'undefined is not a string')
+        expect(() => logic.authenticateUser(email, null)).toThrow(TypeError, 'null is not a string')
 
-        expect(() => authenticateUser(email, '')).toThrow(ContentError, 'password is empty or blank')
-        expect(() => authenticateUser(email, ' \t\r')).toThrow(ContentError, 'password is empty or blank')
+        expect(() => logic.authenticateUser(email, '')).toThrow(ContentError, 'password is empty or blank')
+        expect(() => logic.authenticateUser(email, ' \t\r')).toThrow(ContentError, 'password is empty or blank')
     })
 
     // TODO other cases

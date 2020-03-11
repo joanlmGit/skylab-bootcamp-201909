@@ -1,5 +1,6 @@
 require('dotenv').config()
-const { env: { TEST_DB_URL } } = process
+//const { env: { TEST_DB_URL } } = process
+const TEST_DB_URL=process.env.DB_URL
 const { expect } = require('chai')
 const { errors: { ContentError } } = require('eco-points-utils')
 const { database, models: { Garbage } } = require('eco-points-data')
@@ -28,7 +29,7 @@ describe('logic - retrieve all garbage points', () => {
     it('should succeed on correct reatrive garbage', async () => {
         const allGarbage = await retrieveAllGarbage()
 
-        expect(allGarbage).to.be.defined
+        expect(allGarbage).to.exist
 
         expect(allGarbage).to.be.a('array').lengthOf(10)
         expect(allGarbage[0].location).to.have.property('coordinates')

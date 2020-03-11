@@ -1,5 +1,6 @@
 require('dotenv').config()
-const { env: { TEST_DB_URL } } = process
+//const { env: { TEST_DB_URL } } = process
+const TEST_DB_URL=process.env.DB_URL
 const { expect } = require('chai')
 const { random } = Math
 const retrieveUser = require('.')
