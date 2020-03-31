@@ -3,9 +3,9 @@ const {models: { Garbage } } = require('eco-points-data')
 
 module.exports=function (garbageId){
 
-    
-    debugger
-    
+    validate.string(garbageId)
+    validate.string.notVoid('garbageId', garbageId)
+       
     
     return (async ()=> {
         //const garbage= await garbage.findOne( {/* _id?*/} )

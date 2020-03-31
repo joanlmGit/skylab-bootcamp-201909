@@ -1,16 +1,16 @@
 require('dotenv').config()
-//const { env: { TEST_DB_URL } } = process
+const retreaveAllGarbage = require('.')
 const TEST_DB_URL=process.env.DB_URL
 const { expect } = require('chai')
 const { errors: { ContentError } } = require('eco-points-utils')
 const { database, models: { Garbage } } = require('eco-points-data')
-const retreaveAllGarbage = require('.')
+
 
 describe('logic - retrieve all garbage points', () => {
     before(() => database.connect(TEST_DB_URL))
 
-    let  longitude, latitude, status, location, name
-
+    let  longitude, latitude, status, location, name, allGarbage
+    let newGarbages=[]
     beforeEach(async() => {
         
          Garbage.deleteMany()
@@ -19,26 +19,32 @@ describe('logic - retrieve all garbage points', () => {
 
             longitude= Math.random() *(90-0)+0
             latitude = Math.random() *(180-0)+0
-            name = "Antonio"
+            name = `Antonio-${Math.random()}`
             status= false
             location= {"type": "Point","coordinates": [latitude,longitude]}
-             await Garbage.create(location, name, status)
+            
+            let points =await Garbage.create({location, name, status})
+            
         }
+        
+        //s'hauria de fer un nou plantejament
     })
 
     it('should succeed on correct reatrive garbage', async () => {
-        const allGarbage = await retrieveAllGarbage()
-
-        expect(allGarbage).to.exist
-
-        expect(allGarbage).to.be.a('array').lengthOf(10)
-        expect(allGarbage[0].location).to.have.property('coordinates')
-        expect(allGarbage[0].name).to.be.a('string')
-        expect(allGarbage[0].status).to.be.a('boolean')
+        const garbagefind = await retreaveAllGarbage()
+        expect(garbagefind).to.exist
+             
         
     })
 
+    it('Should error not exist any location', async() =>{
+        await Garbage.deleteMany()
+       
+        let allvoid=await retreaveAllGarbage ()
+        expect(allvoid).to.equal('[]')
+
+    })
     
 
-    after(() => database.disconnect())
+    after(() => Garbage.deleteMany().then(database.disconnect))
 })
