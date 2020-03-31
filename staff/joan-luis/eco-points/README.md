@@ -29,8 +29,9 @@ The user can enter the point using the menu option addgarbage. This option will 
 ![](eco-points-docs/images/componets.png)
 ### Data Model
 ![](eco-points-docs/images/Model-Data.png)
-### Code Coverage
-
+### Code Testing
+![](eco-points-docs/images/EcoPoint-Test-App.png)
+![](eco-points-docs/images/EcoPoint-Test-Api.png)
 ### Built with
     Javascript (ES6)
 #### Client
